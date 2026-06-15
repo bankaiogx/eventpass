@@ -1,5 +1,5 @@
 from django.db.models import Min, Q
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from .models import Category, Event, Venue
 
@@ -43,3 +43,18 @@ def event_list(request):
         "selected_price": price,
     }
     return render(request, "events/event_list.html", context)
+
+
+def event_detail(request, event_id):
+    event = get_object_or_404(
+        Event.objects.select_related("category", "venue"),
+        id=event_id,
+        is_published=True,
+    )
+    ticket_types = event.ticket_types.filter(sale_active=True).order_by("price")
+
+    context = {
+        "event": event,
+        "ticket_types": ticket_types,
+    }
+    return render(request, "events/event_detail.html", context)
