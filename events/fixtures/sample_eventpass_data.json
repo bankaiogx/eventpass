@@ -1,0 +1,248 @@
+[
+{
+  "model": "events.category",
+  "pk": 1,
+  "fields": {
+    "name": "Music",
+    "slug": "music"
+  }
+},
+{
+  "model": "events.category",
+  "pk": 2,
+  "fields": {
+    "name": "Business",
+    "slug": "business"
+  }
+},
+{
+  "model": "events.category",
+  "pk": 3,
+  "fields": {
+    "name": "Fitness",
+    "slug": "fitness"
+  }
+},
+{
+  "model": "events.category",
+  "pk": 4,
+  "fields": {
+    "name": "Food",
+    "slug": "food"
+  }
+},
+{
+  "model": "events.category",
+  "pk": 5,
+  "fields": {
+    "name": "Charity",
+    "slug": "charity"
+  }
+},
+{
+  "model": "events.category",
+  "pk": 6,
+  "fields": {
+    "name": "Workshop",
+    "slug": "workshop"
+  }
+},
+{
+  "model": "events.venue",
+  "pk": 1,
+  "fields": {
+    "name": "King Street Hall",
+    "address": "12 King Street",
+    "city": "Blackburn",
+    "postcode": "BB1 1AA"
+  }
+},
+{
+  "model": "events.venue",
+  "pk": 2,
+  "fields": {
+    "name": "Manchester Creative Hub",
+    "address": "44 Deansgate",
+    "city": "Manchester",
+    "postcode": "M3 2BW"
+  }
+},
+{
+  "model": "events.venue",
+  "pk": 3,
+  "fields": {
+    "name": "Preston Community Centre",
+    "address": "8 Market Street",
+    "city": "Preston",
+    "postcode": "PR1 2AB"
+  }
+},
+{
+  "model": "events.event",
+  "pk": 1,
+  "fields": {
+    "category": 2,
+    "venue": 2,
+    "title": "Manchester Startup Meetup",
+    "description": "A local meetup for founders, freelancers, and students interested in startups.",
+    "start_date": "2026-07-10",
+    "start_time": "18:30:00",
+    "end_time": "21:00:00",
+    "image": "",
+    "is_published": true,
+    "created_at": "2026-06-15T23:24:22.436Z",
+    "updated_at": "2026-06-15T23:24:22.436Z"
+  }
+},
+{
+  "model": "events.event",
+  "pk": 2,
+  "fields": {
+    "category": 5,
+    "venue": 1,
+    "title": "Blackburn Charity Food Night",
+    "description": "A community food evening raising money for local charity projects.",
+    "start_date": "2026-07-18",
+    "start_time": "19:00:00",
+    "end_time": "22:00:00",
+    "image": "",
+    "is_published": true,
+    "created_at": "2026-06-15T23:24:22.441Z",
+    "updated_at": "2026-06-15T23:24:22.441Z"
+  }
+},
+{
+  "model": "events.event",
+  "pk": 3,
+  "fields": {
+    "category": 3,
+    "venue": 3,
+    "title": "Preston Fitness Bootcamp",
+    "description": "A beginner-friendly group fitness session with warmups, circuits, and cooldowns.",
+    "start_date": "2026-07-22",
+    "start_time": "09:30:00",
+    "end_time": "11:00:00",
+    "image": "",
+    "is_published": true,
+    "created_at": "2026-06-15T23:24:22.443Z",
+    "updated_at": "2026-06-15T23:24:22.443Z"
+  }
+},
+{
+  "model": "events.event",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "venue": 1,
+    "title": "Live Acoustic Evening",
+    "description": "An evening of live acoustic performances from local musicians.",
+    "start_date": "2026-08-02",
+    "start_time": "20:00:00",
+    "end_time": "23:00:00",
+    "image": "",
+    "is_published": true,
+    "created_at": "2026-06-15T23:24:22.445Z",
+    "updated_at": "2026-06-15T23:24:22.445Z"
+  }
+},
+{
+  "model": "events.event",
+  "pk": 5,
+  "fields": {
+    "category": 6,
+    "venue": 2,
+    "title": "Django Workshop for Beginners",
+    "description": "A practical introduction to Django projects, apps, models, and admin.",
+    "start_date": "2026-08-12",
+    "start_time": "13:00:00",
+    "end_time": "16:30:00",
+    "image": "",
+    "is_published": true,
+    "created_at": "2026-06-15T23:24:22.447Z",
+    "updated_at": "2026-06-15T23:24:22.447Z"
+  }
+},
+{
+  "model": "events.event",
+  "pk": 6,
+  "fields": {
+    "category": 2,
+    "venue": 3,
+    "title": "Community Networking Brunch",
+    "description": "A relaxed local networking brunch for small businesses and community groups.",
+    "start_date": "2026-08-20",
+    "start_time": "11:00:00",
+    "end_time": "13:00:00",
+    "image": "",
+    "is_published": false,
+    "created_at": "2026-06-15T23:24:22.449Z",
+    "updated_at": "2026-06-15T23:24:22.449Z"
+  }
+},
+{
+  "model": "tickets.tickettype",
+  "pk": 1,
+  "fields": {
+    "event": 1,
+    "name": "Standard Ticket",
+    "price": "10.00",
+    "quantity_available": 80,
+    "sale_active": true
+  }
+},
+{
+  "model": "tickets.tickettype",
+  "pk": 2,
+  "fields": {
+    "event": 1,
+    "name": "VIP Ticket",
+    "price": "25.00",
+    "quantity_available": 20,
+    "sale_active": true
+  }
+},
+{
+  "model": "tickets.tickettype",
+  "pk": 3,
+  "fields": {
+    "event": 2,
+    "name": "Standard Ticket",
+    "price": "12.00",
+    "quantity_available": 60,
+    "sale_active": true
+  }
+},
+{
+  "model": "tickets.tickettype",
+  "pk": 4,
+  "fields": {
+    "event": 3,
+    "name": "Standard Ticket",
+    "price": "8.00",
+    "quantity_available": 40,
+    "sale_active": true
+  }
+},
+{
+  "model": "tickets.tickettype",
+  "pk": 5,
+  "fields": {
+    "event": 4,
+    "name": "Standard Ticket",
+    "price": "15.00",
+    "quantity_available": 100,
+    "sale_active": true
+  }
+},
+{
+  "model": "tickets.tickettype",
+  "pk": 6,
+  "fields": {
+    "event": 5,
+    "name": "Standard Ticket",
+    "price": "20.00",
+    "quantity_available": 35,
+    "sale_active": true
+  }
+}
+]
