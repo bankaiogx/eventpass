@@ -67,6 +67,61 @@ a {
     margin-bottom: 28px;
 }
 
+.home-hero {
+    background: var(--navy);
+    border-radius: 8px;
+    color: var(--white);
+    margin-bottom: 32px;
+    padding: 48px 32px;
+}
+
+.home-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    line-height: 1.05;
+    margin: 0 0 16px;
+    max-width: 760px;
+}
+
+.home-hero p {
+    color: var(--border);
+    max-width: 680px;
+}
+
+.home-section {
+    margin-top: 36px;
+}
+
+.section-heading {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.section-heading h2 {
+    margin: 0;
+}
+
+.section-heading a {
+    color: var(--coral);
+    font-weight: 700;
+}
+
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.category-pill {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--navy);
+    font-weight: 700;
+    padding: 10px 14px;
+}
+
 .page-hero h1,
 .detail-main h1 {
     font-size: clamp(2rem, 5vw, 3.4rem);
