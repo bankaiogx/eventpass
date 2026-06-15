@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EventPass{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar">
+            <a class="brand" href="{% url 'event_list' %}">EventPass</a>
+            <div class="nav-links">
+                <a href="{% url 'event_list' %}">Home</a>
+                <a href="{% url 'event_list' %}">Events</a>
+                <a href="#">My Tickets</a>
+                <a href="#">Login</a>
+                <a href="#">Register</a>
+            </div>
+        </nav>
+    </header>
+
+    {% if messages %}
+        <section class="messages">
+            {% for message in messages %}
+                <p class="message {{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        </section>
+    {% endif %}
+
+    <main class="page-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; {% now "Y" %} EventPass. Local events and tickets.</p>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
