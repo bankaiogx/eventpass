@@ -4,6 +4,22 @@ from django.shortcuts import get_object_or_404, render
 from .models import Category, Event, Venue
 
 
+def home(request):
+    featured_events = (
+        Event.objects.filter(is_published=True)
+        .select_related("category", "venue")
+        .annotate(starting_price=Min("ticket_types__price"))
+        .order_by("start_date", "start_time")[:3]
+    )
+    categories = Category.objects.all()[:6]
+
+    context = {
+        "featured_events": featured_events,
+        "categories": categories,
+    }
+    return render(request, "events/home.html", context)
+
+
 def event_list(request):
     events = (
         Event.objects.filter(is_published=True)
