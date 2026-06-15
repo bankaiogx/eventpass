@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Events | EventPass{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <p class="eyebrow">Local events</p>
+    <h1>Find your next event</h1>
+    <p>Browse upcoming events and use the filters to narrow down what you want to see.</p>
+</section>
+
+<section class="filter-panel">
+    <form method="get" class="filter-form">
+        <label>
+            Search
+            <input type="search" name="q" value="{{ selected_q }}" placeholder="Search events">
+        </label>
+
+        <label>
+            Category
+            <select name="category">
+                <option value="">All categories</option>
+                {% for category in categories %}
+                    <option value="{{ category.slug }}" {% if selected_category == category.slug %}selected{% endif %}>
+                        {{ category.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <label>
+            City
+            <select name="city">
+                <option value="">All cities</option>
+                {% for city in cities %}
+                    <option value="{{ city }}" {% if selected_city == city %}selected{% endif %}>{{ city }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <label>
+            Price
+            <select name="price">
+                <option value="">Any price</option>
+                <option value="free" {% if selected_price == "free" %}selected{% endif %}>Free</option>
+                <option value="under-10" {% if selected_price == "under-10" %}selected{% endif %}>Under £10</option>
+                <option value="under-25" {% if selected_price == "under-25" %}selected{% endif %}>Under £25</option>
+            </select>
+        </label>
+
+        <button class="button" type="submit">Filter events</button>
+    </form>
+</section>
+
+{% if events %}
+    <section class="event-grid">
+        {% for event in events %}
+            <article class="event-card">
+                {% if event.image %}
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                {% endif %}
+                <div class="event-card-content">
+                    <span class="badge">{{ event.category.name }}</span>
+                    <h2>{{ event.title }}</h2>
+                    <p>{{ event.start_date }} at {{ event.start_time }}</p>
+                    <p>{{ event.venue.city }}</p>
+
+                    {% if event.starting_price is not None %}
+                        <p class="price">From £{{ event.starting_price }}</p>
+                        <p class="status available">Tickets available</p>
+                    {% else %}
+                        <p class="status sold-out">Sold out</p>
+                    {% endif %}
+
+                    <a class="button secondary" href="{% url 'event_detail' event.id %}">View Details</a>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+{% else %}
+    <section class="empty-state">
+        <h2>No events found</h2>
+        <p>Try changing your search or filters.</p>
+    </section>
+{% endif %}
+{% endblock %}
