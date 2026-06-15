@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'accounts',
     'events',
     'tickets',
-    'bookings',
     'payments',
 ]
 
