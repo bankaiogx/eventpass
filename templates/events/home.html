@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}EventPass | Local Events{% endblock %}
+
+{% block content %}
+<section class="home-hero">
+    <div>
+        <p class="eyebrow">EventPass</p>
+        <h1>Find local events and book tickets in one place.</h1>
+        <p>Browse music nights, workshops, fitness sessions, food events, charity nights, and local business meetups.</p>
+        <a class="button" href="{% url 'event_list' %}">Browse Events</a>
+    </div>
+</section>
+
+<section class="home-section">
+    <div class="section-heading">
+        <h2>Featured events</h2>
+        <a href="{% url 'event_list' %}">View all events</a>
+    </div>
+
+    {% if featured_events %}
+        <div class="event-grid">
+            {% for event in featured_events %}
+                <article class="event-card">
+                    {% if event.image %}
+                        <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                    {% endif %}
+                    <div class="event-card-content">
+                        <span class="badge">{{ event.category.name }}</span>
+                        <h2>{{ event.title }}</h2>
+                        <p>{{ event.start_date }} at {{ event.start_time }}</p>
+                        <p>{{ event.venue.city }}</p>
+                        {% if event.starting_price is not None %}
+                            <p class="price">From £{{ event.starting_price }}</p>
+                        {% endif %}
+                        <a class="button secondary" href="{% url 'event_detail' event.id %}">View Details</a>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No featured events are available yet.</p>
+    {% endif %}
+</section>
+
+<section class="home-section">
+    <div class="section-heading">
+        <h2>Popular categories</h2>
+    </div>
+
+    <div class="category-list">
+        {% for category in categories %}
+            <a class="category-pill" href="{% url 'event_list' %}?category={{ category.slug }}">{{ category.name }}</a>
+        {% empty %}
+            <p>No categories have been added yet.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
