@@ -274,14 +274,7 @@ select {
     gap: 24px;
 }
 
-.detail-layout {
-    display: grid;
-    gap: 24px;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
-}
-
-.detail-main,
-.ticket-row {
+.detail-main {
     background: var(--white);
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -292,7 +285,7 @@ select {
     display: flex;
     gap: 16px;
     justify-content: space-between;
-    margin-bottom: 12px;
+    padding: 16px;
 }
 
 .ticket-row h3,
@@ -334,7 +327,6 @@ select {
 
 @media (max-width: 720px) {
     .navbar,
-    .detail-layout,
     .ticket-row {
         align-items: flex-start;
         display: grid;
