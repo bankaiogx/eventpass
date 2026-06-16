@@ -45,6 +45,10 @@ a {
     font-weight: 700;
 }
 
+.navbar-brand {
+    font-size: 1.6rem;
+}
+
 .nav-links {
     display: flex;
     flex-wrap: wrap;
