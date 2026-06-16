@@ -164,6 +164,34 @@ a {
     padding: 20px;
 }
 
+.auth-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 0 auto;
+    max-width: 480px;
+    padding: 28px;
+}
+
+.auth-card h1 {
+    margin-bottom: 10px;
+}
+
+.auth-card form p {
+    display: grid;
+    gap: 6px;
+}
+
+.auth-link {
+    margin: 18px 0 0;
+    text-align: center;
+}
+
+.auth-link a {
+    color: var(--coral);
+    font-weight: 700;
+}
+
 .filter-form {
     display: grid;
     gap: 16px;
