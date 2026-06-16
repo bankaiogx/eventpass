@@ -53,6 +53,12 @@ a {
     gap: 18px;
 }
 
+.logout-button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+
 .nav-links {
     display: flex;
     flex-wrap: wrap;
