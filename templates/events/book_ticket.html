@@ -6,6 +6,21 @@
 <section class="auth-card">
     <h1>Book Ticket</h1>
     <p class="text-muted">{{ event.title }}</p>
+
+    {% if ticket_types %}
+        <div class="list-group mb-3">
+            {% for ticket in ticket_types %}
+                <div class="list-group-item">
+                    <h2 class="h5 mb-1">{{ ticket.name }}</h2>
+                    <p class="mb-1">£{{ ticket.price }}</p>
+                    <small class="text-muted">{{ ticket.quantity_available }} available</small>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted">No tickets are available for this event.</p>
+    {% endif %}
+
     <a class="btn btn-danger w-100" href="{% url 'event_detail' event.id %}">Back to Event</a>
 </section>
 {% endblock %}

@@ -80,4 +80,10 @@ def event_detail(request, event_id):
 @login_required
 def book_ticket(request, event_id):
     event = get_object_or_404(Event, id=event_id, is_published=True)
-    return render(request, "events/book_ticket.html", {"event": event})
+    ticket_types = event.ticket_types.filter(sale_active=True).order_by("price")
+
+    context = {
+        "event": event,
+        "ticket_types": ticket_types,
+    }
+    return render(request, "events/book_ticket.html", context)
