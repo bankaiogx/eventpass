@@ -22,5 +22,5 @@ def register(request):
 
 @login_required
 def my_tickets(request):
-    orders = Order.objects.filter(user=request.user).select_related("event")
+    orders = Order.objects.filter(user=request.user).select_related("event").prefetch_related("items__ticket_type")
     return render(request, "accounts/my_tickets.html", {"orders": orders})

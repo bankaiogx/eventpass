@@ -12,6 +12,11 @@
                     <h2 class="h5 mb-1">{{ order.event.title }}</h2>
                     <p class="mb-1">Total: £{{ order.total_amount }}</p>
                     <p class="mb-1">Status: {{ order.get_payment_status_display }}</p>
+                    <ul class="mb-2 ps-3">
+                        {% for item in order.items.all %}
+                            <li>{{ item.quantity }} x {{ item.ticket_type.name }}</li>
+                        {% endfor %}
+                    </ul>
                     <small class="text-muted">Ordered on {{ order.created_at|date:"d M Y" }}</small>
                 </div>
             {% endfor %}
