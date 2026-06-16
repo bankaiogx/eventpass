@@ -3,13 +3,50 @@
 {% block title %}EventPass | Local Events{% endblock %}
 
 {% block content %}
-<section class="home-hero">
-    <div>
-        <p class="eyebrow">EventPass</p>
-        <h1>Find local events and book tickets in one place.</h1>
-        <p>Browse music nights, workshops, fitness sessions, food events, charity nights, and local business meetups.</p>
-        <a class="button" href="{% url 'event_list' %}">Browse Events</a>
+<section id="homeCarousel" class="carousel slide home-carousel" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
+
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="carousel-panel">
+                <p class="eyebrow">EventPass</p>
+                <h1>Find local events and book tickets in one place.</h1>
+                <p>Browse music nights, workshops, fitness sessions, food events, charity nights, and local business meetups.</p>
+                <a class="button" href="{% url 'event_list' %}">Browse Events</a>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="carousel-panel">
+                <p class="eyebrow">Simple booking</p>
+                <h1>Choose events now, book tickets soon.</h1>
+                <p>The public pages are ready for browsing while the ticket booking flow is built next.</p>
+                <a class="button" href="{% url 'event_list' %}">View Events</a>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="carousel-panel">
+                <p class="eyebrow">Admin managed</p>
+                <h1>Events are managed through Django Admin.</h1>
+                <p>The site owner controls categories, venues, events and ticket types from one admin area.</p>
+                <a class="button" href="{% url 'event_list' %}">Explore Events</a>
+            </div>
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </section>
 
 <section class="home-section">
