@@ -311,6 +311,18 @@ select {
     text-align: center;
 }
 
+.social-links {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: var(--navy);
+    font-size: 1.25rem;
+}
+
 @media (max-width: 720px) {
     .navbar,
     .detail-layout,
