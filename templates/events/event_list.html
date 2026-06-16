@@ -10,15 +10,15 @@
 </section>
 
 <section class="filter-panel">
-    <form method="get" class="filter-form">
-        <label>
-            Search
-            <input type="search" name="q" value="{{ selected_q }}" placeholder="Search events">
-        </label>
+    <form method="get" class="row g-3 align-items-end">
+        <div class="col-md-6 col-lg-3">
+            <label class="form-label" for="event-search">Search</label>
+            <input class="form-control" id="event-search" type="search" name="q" value="{{ selected_q }}" placeholder="Search events">
+        </div>
 
-        <label>
-            Category
-            <select name="category">
+        <div class="col-md-6 col-lg-3">
+            <label class="form-label" for="event-category">Category</label>
+            <select class="form-select" id="event-category" name="category">
                 <option value="">All categories</option>
                 {% for category in categories %}
                     <option value="{{ category.slug }}" {% if selected_category == category.slug %}selected{% endif %}>
@@ -26,29 +26,31 @@
                     </option>
                 {% endfor %}
             </select>
-        </label>
+        </div>
 
-        <label>
-            City
-            <select name="city">
+        <div class="col-md-6 col-lg-2">
+            <label class="form-label" for="event-city">City</label>
+            <select class="form-select" id="event-city" name="city">
                 <option value="">All cities</option>
                 {% for city in cities %}
                     <option value="{{ city }}" {% if selected_city == city %}selected{% endif %}>{{ city }}</option>
                 {% endfor %}
             </select>
-        </label>
+        </div>
 
-        <label>
-            Price
-            <select name="price">
+        <div class="col-md-6 col-lg-2">
+            <label class="form-label" for="event-price">Price</label>
+            <select class="form-select" id="event-price" name="price">
                 <option value="">Any price</option>
                 <option value="free" {% if selected_price == "free" %}selected{% endif %}>Free</option>
                 <option value="under-10" {% if selected_price == "under-10" %}selected{% endif %}>Under £10</option>
                 <option value="under-25" {% if selected_price == "under-25" %}selected{% endif %}>Under £25</option>
             </select>
-        </label>
+        </div>
 
-        <button class="button" type="submit">Filter events</button>
+        <div class="col-lg-2">
+            <button class="btn btn-danger w-100" type="submit">Filter events</button>
+        </div>
     </form>
 </section>
 
