@@ -331,7 +331,6 @@ select {
 }
 
 @media (max-width: 720px) {
-    .navbar,
     .ticket-row {
         align-items: flex-start;
         display: grid;
