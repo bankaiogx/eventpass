@@ -1,9 +1,11 @@
 const cards = document.querySelectorAll(".event-card");
 
-cards.addEventListener("mouseenter", function () {
-    this.style.transform = "scale(1.03)";
-});
+cards.forEach(function (card) {
+    card.addEventListener("mouseenter", function () {
+        this.style.transform = "scale(1.03)";
+    });
 
-cards.addEventListener("mouseleave", function () {
-    this.style.transform = "scale(1)";
+    card.addEventListener("mouseleave", function () {
+        this.style.transform = "scale(1)";
+    });
 });
