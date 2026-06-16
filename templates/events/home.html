@@ -52,7 +52,7 @@
 
     <div class="category-list">
         {% for category in categories %}
-            <a class="category-pill" href="{% url 'event_list' %}?category={{ category.slug }}">{{ category.name }}</a>
+            <a class="category-pill" href="{% url 'event_list' %}?category={{ category.slug }}">#{{ category.slug }}</a>
         {% empty %}
             <p>No categories have been added yet.</p>
         {% endfor %}
