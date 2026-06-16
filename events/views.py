@@ -121,6 +121,8 @@ def book_ticket(request, event_id):
                 quantity=quantity,
                 price_at_purchase=ticket.price,
             )
+            ticket.quantity_available -= quantity
+            ticket.save()
 
         messages.success(request, "Your ticket order has been created.")
         return redirect("my_tickets")
