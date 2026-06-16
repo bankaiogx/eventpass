@@ -1,6 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.db.models import Min, Q
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
+
+from tickets.models import Order, OrderItem
 
 from .models import Category, Event, Venue
 
@@ -81,6 +84,46 @@ def event_detail(request, event_id):
 def book_ticket(request, event_id):
     event = get_object_or_404(Event, id=event_id, is_published=True)
     ticket_types = event.ticket_types.filter(sale_active=True).order_by("price")
+
+    if request.method == "POST":
+        selected_tickets = []
+        total_amount = 0
+
+        for ticket in ticket_types:
+            try:
+                quantity = int(request.POST.get(f"ticket_{ticket.id}", 0))
+            except ValueError:
+                messages.error(request, "Please choose a valid ticket quantity.")
+                return redirect("book_ticket", event_id=event.id)
+
+            if quantity > ticket.quantity_available:
+                messages.error(request, "Please choose a valid ticket quantity.")
+                return redirect("book_ticket", event_id=event.id)
+
+            if quantity > 0:
+                selected_tickets.append((ticket, quantity))
+                total_amount += ticket.price * quantity
+
+        if not selected_tickets:
+            messages.error(request, "Please choose at least one ticket.")
+            return redirect("book_ticket", event_id=event.id)
+
+        order = Order.objects.create(
+            user=request.user,
+            event=event,
+            total_amount=total_amount,
+        )
+
+        for ticket, quantity in selected_tickets:
+            OrderItem.objects.create(
+                order=order,
+                ticket_type=ticket,
+                quantity=quantity,
+                price_at_purchase=ticket.price,
+            )
+
+        messages.success(request, "Your ticket order has been created.")
+        return redirect("my_tickets")
 
     context = {
         "event": event,
