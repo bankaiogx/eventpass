@@ -5,7 +5,20 @@
 {% block content %}
 <section class="auth-card">
     <h1>My Tickets</h1>
-    <p class="text-muted">Your ticket information will be shown here.</p>
+    {% if orders %}
+        <div class="list-group mb-3">
+            {% for order in orders %}
+                <div class="list-group-item">
+                    <h2 class="h5 mb-1">{{ order.event.title }}</h2>
+                    <p class="mb-1">Total: £{{ order.total_amount }}</p>
+                    <p class="mb-1">Status: {{ order.get_payment_status_display }}</p>
+                    <small class="text-muted">Ordered on {{ order.created_at|date:"d M Y" }}</small>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted">You have not booked any tickets yet.</p>
+    {% endif %}
     <a class="btn btn-danger w-100" href="{% url 'event_list' %}">Browse Events</a>
 </section>
 {% endblock %}

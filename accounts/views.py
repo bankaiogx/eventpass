@@ -2,6 +2,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
+from tickets.models import Order
+
 from .forms import RegisterForm
 
 
@@ -20,4 +22,5 @@ def register(request):
 
 @login_required
 def my_tickets(request):
-    return render(request, "accounts/my_tickets.html")
+    orders = Order.objects.filter(user=request.user).select_related("event")
+    return render(request, "accounts/my_tickets.html", {"orders": orders})
