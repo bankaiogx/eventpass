@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Min, Q
 from django.shortcuts import get_object_or_404, render
 
@@ -74,3 +75,9 @@ def event_detail(request, event_id):
         "ticket_types": ticket_types,
     }
     return render(request, "events/event_detail.html", context)
+
+
+@login_required
+def book_ticket(request, event_id):
+    event = get_object_or_404(Event, id=event_id, is_published=True)
+    return render(request, "events/book_ticket.html", {"event": event})
