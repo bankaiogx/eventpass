@@ -49,6 +49,10 @@ a {
     font-size: 1.6rem;
 }
 
+.navbar-nav {
+    gap: 18px;
+}
+
 .nav-links {
     display: flex;
     flex-wrap: wrap;
