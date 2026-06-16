@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}My Tickets | EventPass{% endblock %}
+
+{% block content %}
+<section class="auth-card">
+    <h1>My Tickets</h1>
+    <p class="text-muted">Your ticket information will be shown here.</p>
+    <a class="btn btn-danger w-100" href="{% url 'event_list' %}">Browse Events</a>
+</section>
+{% endblock %}
