@@ -29,7 +29,7 @@ def my_tickets(request):
 
 @login_required
 def support_requests(request):
-    requests = SupportRequest.objects.filter(user=request.user)
+    requests = SupportRequest.objects.filter(user=request.user).select_related("order", "order__event")
     return render(request, "accounts/support_requests.html", {"requests": requests})
 
 

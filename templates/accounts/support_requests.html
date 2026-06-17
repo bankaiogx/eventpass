@@ -14,6 +14,9 @@
             {% for request in requests %}
                 <div class="list-group-item">
                     <h2 class="h5 mb-1">{{ request.subject }}</h2>
+                    {% if request.order %}
+                        <p class="mb-1 text-muted">Order #{{ request.order.id }} - {{ request.order.event.title }}</p>
+                    {% endif %}
                     <p class="mb-1">{{ request.message }}</p>
                     <small class="text-muted">{{ request.get_status_display }} - {{ request.created_at|date:"d M Y" }}</small>
                     {% if request.status == "open" %}
