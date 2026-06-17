@@ -1,8 +1,12 @@
+import stripe
+
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Min, Q
 from django.shortcuts import get_object_or_404, redirect, render
 
+from payments.stripe_checkout import create_order_checkout_session
 from tickets.models import Order, OrderItem
 
 from .models import Category, Event, Venue
@@ -124,8 +128,20 @@ def book_ticket(request, event_id):
             ticket.quantity_available -= quantity
             ticket.save()
 
-        messages.success(request, "Your ticket order has been created.")
-        return redirect("booking_confirmation", order_id=order.id)
+        if not settings.STRIPE_SECRET_KEY:
+            messages.error(request, "Stripe test keys need to be added before payment can work.")
+            return redirect("booking_confirmation", order_id=order.id)
+
+        try:
+            checkout_session = create_order_checkout_session(request, order)
+        except stripe.error.StripeError:
+            messages.error(request, "There was a problem starting Stripe checkout. Please try again.")
+            return redirect("booking_confirmation", order_id=order.id)
+
+        order.stripe_checkout_id = checkout_session.id
+        order.save()
+
+        return redirect(checkout_session.url)
 
     context = {
         "event": event,
