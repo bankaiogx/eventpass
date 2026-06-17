@@ -12,6 +12,19 @@ from .stripe_checkout import create_order_checkout_session
 from tickets.models import Order
 
 
+def mark_order_paid(order):
+    if order.payment_status == "paid":
+        return
+
+    for item in order.items.select_related("ticket_type"):
+        ticket = item.ticket_type
+        ticket.quantity_available = max(ticket.quantity_available - item.quantity, 0)
+        ticket.save()
+
+    order.payment_status = "paid"
+    order.save()
+
+
 @login_required
 @require_POST
 def create_checkout_session(request, order_id):
@@ -48,8 +61,7 @@ def payment_success(request, order_id):
         id=order_id,
         user=request.user,
     )
-    order.payment_status = "paid"
-    order.save()
+    mark_order_paid(order)
 
     return render(request, "payments/payment_success.html", {"order": order})
 
@@ -88,9 +100,10 @@ def stripe_webhook(request):
         order_id = session.get("metadata", {}).get("order_id")
 
         if order_id:
-            Order.objects.filter(id=order_id).update(
-                payment_status="paid",
-                stripe_checkout_id=session.get("id", ""),
-            )
+            order = Order.objects.filter(id=order_id).prefetch_related("items__ticket_type").first()
+
+            if order:
+                order.stripe_checkout_id = session.get("id", "")
+                mark_order_paid(order)
 
     return HttpResponse(status=200)

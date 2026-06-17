@@ -125,8 +125,6 @@ def book_ticket(request, event_id):
                 quantity=quantity,
                 price_at_purchase=ticket.price,
             )
-            ticket.quantity_available -= quantity
-            ticket.save()
 
         if not settings.STRIPE_SECRET_KEY:
             messages.error(request, "Stripe test keys need to be added before payment can work.")
