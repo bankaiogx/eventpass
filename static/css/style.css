@@ -223,6 +223,13 @@ a {
     color: #B42318;
 }
 
+.payment-animation {
+    display: block;
+    height: 120px;
+    margin: 0 auto 10px;
+    width: 120px;
+}
+
 .payment-summary {
     background: var(--page);
     border: 1px solid var(--border);
