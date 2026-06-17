@@ -125,10 +125,20 @@ def book_ticket(request, event_id):
             ticket.save()
 
         messages.success(request, "Your ticket order has been created.")
-        return redirect("my_tickets")
+        return redirect("booking_confirmation", order_id=order.id)
 
     context = {
         "event": event,
         "ticket_types": ticket_types,
     }
     return render(request, "events/book_ticket.html", context)
+
+
+@login_required
+def booking_confirmation(request, order_id):
+    order = get_object_or_404(
+        Order.objects.select_related("event").prefetch_related("items__ticket_type"),
+        id=order_id,
+        user=request.user,
+    )
+    return render(request, "events/booking_confirmation.html", {"order": order})

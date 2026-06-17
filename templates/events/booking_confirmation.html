@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Booking Confirmed | EventPass{% endblock %}
+
+{% block content %}
+<section class="auth-card">
+    <h1>Booking Confirmed</h1>
+    <p class="text-muted">{{ order.event.title }}</p>
+
+    <div class="list-group mb-3">
+        {% for item in order.items.all %}
+            <div class="list-group-item">
+                <h2 class="h5 mb-1">{{ item.ticket_type.name }}</h2>
+                <p class="mb-1">{{ item.quantity }} x £{{ item.price_at_purchase }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <p>Total: £{{ order.total_amount }}</p>
+    <p>Status: {{ order.get_payment_status_display }}</p>
+
+    <a class="btn btn-danger w-100 mb-2" href="{% url 'my_tickets' %}">View My Tickets</a>
+    <a class="btn btn-outline-secondary w-100" href="{% url 'event_list' %}">Browse More Events</a>
+</section>
+{% endblock %}
