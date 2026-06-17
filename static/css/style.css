@@ -310,6 +310,16 @@ a {
     text-align: center;
 }
 
+.quantity-control input::-webkit-outer-spin-button,
+.quantity-control input::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+.quantity-control input[type="number"] {
+    appearance: textfield;
+}
+
 .quantity-button {
     background: var(--navy);
     border: 1px solid var(--navy);

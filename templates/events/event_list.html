@@ -52,6 +52,12 @@
         <div class="col-lg-2">
             <button class="btn btn-danger w-100" type="submit">Filter events</button>
         </div>
+
+        {% if selected_q or selected_category or selected_city or selected_price %}
+            <div class="col-lg-2">
+                <a class="btn btn-dark w-100" href="{% url 'event_list' %}">Clear Filters</a>
+            </div>
+        {% endif %}
     </form>
 </section>
 
