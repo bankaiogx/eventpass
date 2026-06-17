@@ -20,8 +20,13 @@
                 {% if event.end_time %}
                     <p class="event-meta">Ends at {{ event.end_time }}</p>
                 {% endif %}
-                <p class="event-meta">{{ event.venue.name }}, {{ event.venue.city }}</p>
-                <p class="event-meta">{{ event.venue.address }}, {{ event.venue.postcode }}</p>
+                <p>{{ event.description }}</p>
+
+                <div class="venue-section">
+                    <h2>Venue</h2>
+                    <p class="event-meta">{{ event.venue.name }}, {{ event.venue.city }}</p>
+                    <p class="event-meta">{{ event.venue.address }}, {{ event.venue.postcode }}</p>
+                </div>
                 <iframe
                     class="event-map"
                     src="https://www.google.com/maps?q={{ event.venue.name|urlencode }}%20{{ event.venue.address|urlencode }}%20{{ event.venue.city|urlencode }}%20{{ event.venue.postcode|urlencode }}&output=embed"
@@ -37,7 +42,6 @@
                 >
                     View on Google Maps
                 </a>
-                <p>{{ event.description }}</p>
             </div>
         </section>
 

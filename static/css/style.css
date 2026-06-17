@@ -366,6 +366,17 @@ select {
     padding: 20px;
 }
 
+.venue-section {
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+    padding-top: 18px;
+}
+
+.venue-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
 .event-map {
     aspect-ratio: 16 / 9;
     border: 0;
@@ -385,6 +396,15 @@ select {
 .ticket-row h3,
 .ticket-row p {
     margin: 0 0 6px;
+}
+
+.ticket-row h3 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.ticket-row p {
+    color: var(--muted);
 }
 
 .messages {
