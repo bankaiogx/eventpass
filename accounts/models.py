@@ -29,3 +29,10 @@ class SupportRequest(models.Model):
 
     def __str__(self):
         return f"{self.subject} - {self.user}"
+
+
+class CancellationRequest(SupportRequest):
+    class Meta:
+        proxy = True
+        verbose_name = "Cancellation request"
+        verbose_name_plural = "Cancellation requests"
