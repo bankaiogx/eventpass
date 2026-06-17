@@ -22,6 +22,18 @@
                             <span class="badge text-bg-secondary">{{ order.get_payment_status_display }}</span>
                         {% endif %}
                     </p>
+                    {% if order.refund_status != "not_requested" %}
+                        <p class="mb-1">
+                            Refund:
+                            {% if order.refund_status == "requested" %}
+                                <span class="badge text-bg-info">{{ order.get_refund_status_display }}</span>
+                            {% elif order.refund_status == "approved" or order.refund_status == "refunded" %}
+                                <span class="badge text-bg-success">{{ order.get_refund_status_display }}</span>
+                            {% elif order.refund_status == "rejected" %}
+                                <span class="badge text-bg-secondary">{{ order.get_refund_status_display }}</span>
+                            {% endif %}
+                        </p>
+                    {% endif %}
                     <ul class="mb-2 ps-3">
                         {% for item in order.items.all %}
                             <li>{{ item.quantity }} x {{ item.ticket_type.name }}</li>

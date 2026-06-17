@@ -50,6 +50,9 @@ def create_support_request(request):
             support_request.order = order
             support_request.request_type = request_type
             support_request.save()
+            if order and request_type == "cancel_order":
+                order.refund_status = "requested"
+                order.save()
             messages.success(request, "Your support request has been sent.")
             return redirect("support_requests")
     else:
