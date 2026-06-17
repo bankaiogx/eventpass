@@ -232,6 +232,13 @@ a {
     text-align: left;
 }
 
+.booking-ticket-row {
+    align-items: center;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr 120px;
+}
+
 .filter-form {
     display: grid;
     gap: 16px;
@@ -413,6 +420,11 @@ select {
 }
 
 @media (max-width: 720px) {
+    .booking-ticket-row {
+        align-items: flex-start;
+        grid-template-columns: 1fr;
+    }
+
     .ticket-row {
         align-items: flex-start;
         display: grid;
