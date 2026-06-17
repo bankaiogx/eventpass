@@ -70,9 +70,9 @@
 
                         {% if event.available_ticket_count %}
                             <p class="price">From £{{ event.starting_price }}</p>
-                            <span class="status available">Tickets available</span>
+                            <span class="status available align-self-start">Tickets available</span>
                         {% else %}
-                            <span class="status sold-out">Sold out</span>
+                            <span class="status sold-out align-self-start">Sold out</span>
                         {% endif %}
 
                         <a class="button secondary mt-auto" href="{% url 'event_detail' event.id %}">View Details</a>
