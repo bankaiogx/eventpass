@@ -30,6 +30,9 @@ def create_ticket_checkout_session(request, event, selected_tickets):
         success_url=success_url,
         cancel_url=cancel_url,
         customer_email=request.user.email or None,
+        payment_intent_data={
+            "receipt_email": request.user.email or None,
+        },
         metadata={
             "user_id": str(request.user.id),
             "event_id": str(event.id),
