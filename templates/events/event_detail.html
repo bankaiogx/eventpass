@@ -21,6 +21,13 @@
                 {% endif %}
                 <p class="event-meta">{{ event.venue.name }}, {{ event.venue.city }}</p>
                 <p class="event-meta">{{ event.venue.address }}, {{ event.venue.postcode }}</p>
+                <iframe
+                    class="event-map"
+                    src="https://www.google.com/maps?q={{ event.venue.name|urlencode }}%20{{ event.venue.address|urlencode }}%20{{ event.venue.city|urlencode }}%20{{ event.venue.postcode|urlencode }}&output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Map for {{ event.venue.name }}"
+                ></iframe>
                 <a
                     class="btn btn-outline-secondary mb-3"
                     href="https://www.google.com/maps/search/?api=1&query={{ event.venue.name|urlencode }}%20{{ event.venue.address|urlencode }}%20{{ event.venue.city|urlencode }}%20{{ event.venue.postcode|urlencode }}"
