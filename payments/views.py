@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
@@ -25,6 +26,7 @@ def stripe_value(stripe_object, key, default=None):
 
 def mark_order_paid(order):
     if order.payment_status == "paid":
+        send_order_confirmation(order)
         return
 
     for item in order.items.select_related("ticket_type"):
@@ -34,6 +36,48 @@ def mark_order_paid(order):
 
     order.payment_status = "paid"
     order.save()
+    send_order_confirmation(order)
+
+
+def send_order_confirmation(order):
+    if order.email_confirmation_sent or not order.user.email:
+        return
+
+    ticket_lines = [
+        f"- {item.quantity} x {item.ticket_type.name}"
+        for item in order.items.select_related("ticket_type")
+    ]
+
+    message = "\n".join(
+        [
+            f"Hi {order.user.username},",
+            "",
+            f"Your booking for {order.event.title} is confirmed.",
+            "",
+            f"Order number: {order.id}",
+            f"Total paid: £{order.total_amount}",
+            "",
+            "Tickets:",
+            *ticket_lines,
+            "",
+            "Your tickets will be emailed 72 hours before the event start date.",
+            "",
+            "Thanks,",
+            "EventPass",
+        ]
+    )
+
+    sent_count = send_mail(
+        subject=f"EventPass booking confirmation - Order #{order.id}",
+        message=message,
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        recipient_list=[order.user.email],
+        fail_silently=True,
+    )
+
+    if sent_count:
+        order.email_confirmation_sent = True
+        order.save(update_fields=["email_confirmation_sent"])
 
 
 def create_order_from_stripe_session(session):

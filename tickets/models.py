@@ -49,6 +49,7 @@ class Order(models.Model):
         default="not_requested",
     )
     stock_returned = models.BooleanField(default=False)
+    email_confirmation_sent = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
