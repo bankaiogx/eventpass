@@ -22,10 +22,13 @@
                         </div>
                         <div>
                             <label class="form-label" for="ticket_{{ ticket.id }}">Quantity</label>
-                            <input class="form-control" id="ticket_{{ ticket.id }}" name="ticket_{{ ticket.id }}" type="number" min="0" max="{{ ticket.quantity_available }}" value="0">
+                            <input class="form-control ticket-quantity" id="ticket_{{ ticket.id }}" name="ticket_{{ ticket.id }}" type="number" min="0" max="{{ ticket.quantity_available }}" value="0" data-price="{{ ticket.price }}">
                         </div>
                     </div>
                 {% endfor %}
+            </div>
+            <div class="booking-total">
+                Estimated total: £<span id="booking-total">0.00</span>
             </div>
             <button class="btn btn-danger w-100 mb-2" type="submit">Continue to Payment</button>
         </form>
