@@ -12,7 +12,16 @@
                 <div class="list-group-item">
                     <h2 class="h5 mb-1">{{ order.event.title }}</h2>
                     <p class="mb-1">Total: £{{ order.total_amount }}</p>
-                    <p class="mb-1">Status: {{ order.get_payment_status_display }}</p>
+                    <p class="mb-1">
+                        Status:
+                        {% if order.payment_status == "paid" %}
+                            <span class="badge text-bg-success">{{ order.get_payment_status_display }}</span>
+                        {% elif order.payment_status == "pending" %}
+                            <span class="badge text-bg-warning">{{ order.get_payment_status_display }}</span>
+                        {% else %}
+                            <span class="badge text-bg-secondary">{{ order.get_payment_status_display }}</span>
+                        {% endif %}
+                    </p>
                     <ul class="mb-2 ps-3">
                         {% for item in order.items.all %}
                             <li>{{ item.quantity }} x {{ item.ticket_type.name }}</li>
