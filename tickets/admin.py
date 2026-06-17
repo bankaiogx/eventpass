@@ -24,6 +24,8 @@ class OrderAdmin(admin.ModelAdmin):
 
         if obj.refund_status == "refunded":
             obj.return_ticket_stock()
+        elif obj.refund_status == "rejected":
+            obj.close_cancellation_requests()
 
 
 @admin.register(OrderItem)

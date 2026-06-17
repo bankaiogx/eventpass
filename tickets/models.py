@@ -57,6 +57,9 @@ class Order(models.Model):
     def __str__(self):
         return f"Order {self.id} - {self.user}"
 
+    def close_cancellation_requests(self):
+        self.support_requests.filter(request_type="cancel_order").update(status="closed")
+
     def return_ticket_stock(self):
         if self.stock_returned:
             return
@@ -68,7 +71,7 @@ class Order(models.Model):
         self.stock_returned = True
         self.payment_status = "cancelled"
         self.save(update_fields=["stock_returned", "payment_status"])
-        self.support_requests.filter(request_type="cancel_order").update(status="closed")
+        self.close_cancellation_requests()
 
 
 class OrderItem(models.Model):
