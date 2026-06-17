@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -12,9 +13,10 @@ def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, "Account created successfully. You can now log in.")
-            return redirect("login")
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Account created successfully.")
+            return redirect("home")
     else:
         form = RegisterForm()
 
