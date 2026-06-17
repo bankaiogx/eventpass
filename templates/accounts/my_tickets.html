@@ -35,6 +35,8 @@
                         </p>
                         {% if order.refund_status == "refunded" %}
                             <p class="mb-1 text-muted">Your refund has been processed.</p>
+                        {% elif order.refund_status == "rejected" %}
+                            <p class="mb-1 text-muted">Your cancellation request was not approved.</p>
                         {% endif %}
                     {% endif %}
                     <ul class="mb-2 ps-3">
