@@ -16,6 +16,13 @@ from events.models import Event
 from tickets.models import Order, OrderItem, TicketType
 
 
+def stripe_value(stripe_object, key, default=None):
+    try:
+        return stripe_object[key]
+    except (KeyError, TypeError):
+        return getattr(stripe_object, key, default)
+
+
 def mark_order_paid(order):
     if order.payment_status == "paid":
         return
@@ -30,13 +37,13 @@ def mark_order_paid(order):
 
 
 def create_order_from_stripe_session(session):
-    session_id = session.get("id", "")
+    session_id = stripe_value(session, "id", "")
     existing_order = Order.objects.filter(stripe_checkout_id=session_id).prefetch_related("items__ticket_type").first()
 
     if existing_order:
         return existing_order
 
-    metadata = session.get("metadata") or {}
+    metadata = stripe_value(session, "metadata", {}) or {}
 
     if metadata.get("order_id"):
         order = Order.objects.filter(id=metadata["order_id"]).prefetch_related("items__ticket_type").first()
@@ -48,7 +55,7 @@ def create_order_from_stripe_session(session):
     user = get_user_model().objects.get(id=metadata["user_id"])
     event = Event.objects.get(id=metadata["event_id"])
     ticket_data = json.loads(metadata["tickets"])
-    total_amount = Decimal(session.get("amount_total") or 0) / Decimal("100")
+    total_amount = Decimal(stripe_value(session, "amount_total", 0) or 0) / Decimal("100")
 
     order = Order.objects.create(
         user=user,
