@@ -3,9 +3,11 @@ import stripe
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 from tickets.models import Order
 
@@ -49,6 +51,7 @@ def create_checkout_session(request, order_id):
         ],
         success_url=success_url,
         cancel_url=cancel_url,
+        metadata={"order_id": order.id},
     )
 
     order.stripe_checkout_id = checkout_session.id
@@ -68,3 +71,35 @@ def payment_success(request, order_id):
     order.save()
 
     return render(request, "payments/payment_success.html", {"order": order})
+
+
+@csrf_exempt
+def stripe_webhook(request):
+    if request.method != "POST":
+        return HttpResponse(status=405)
+
+    payload = request.body
+    sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload,
+            sig_header,
+            settings.STRIPE_WEBHOOK_SECRET,
+        )
+    except ValueError:
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError:
+        return HttpResponse(status=400)
+
+    if event["type"] == "checkout.session.completed":
+        session = event["data"]["object"]
+        order_id = session.get("metadata", {}).get("order_id")
+
+        if order_id:
+            Order.objects.filter(id=order_id).update(
+                payment_status="paid",
+                stripe_checkout_id=session.get("id", ""),
+            )
+
+    return HttpResponse(status=200)
