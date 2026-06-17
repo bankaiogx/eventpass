@@ -235,10 +235,10 @@ a {
 
 .payment-animation {
     display: block;
-    height: 180px;
+    height: 260px;
     margin: 0 auto 12px;
     max-width: 100%;
-    width: 180px;
+    width: 260px;
 }
 
 .payment-summary {
