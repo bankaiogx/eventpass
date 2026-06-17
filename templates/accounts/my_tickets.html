@@ -18,6 +18,7 @@
                         {% endfor %}
                     </ul>
                     <small class="text-muted">Ordered on {{ order.created_at|date:"d M Y" }}</small>
+                    <a class="btn btn-outline-secondary w-100 mt-2" href="{% url 'booking_confirmation' order.id %}">View Order</a>
                 </div>
             {% endfor %}
         </div>
