@@ -3,10 +3,15 @@
 {% block title %}Payment Cancelled | EventPass{% endblock %}
 
 {% block content %}
-<section class="auth-card">
+<section class="auth-card payment-result">
+    <div class="payment-icon cancelled">
+        <i class="bi bi-x-lg"></i>
+    </div>
     <h1>Payment Cancelled</h1>
     <p class="text-muted">Your payment was not completed, so no ticket order was created.</p>
+    <p class="text-muted">You can browse events again and restart checkout when you are ready.</p>
 
-    <a class="btn btn-danger w-100" href="{% url 'event_list' %}">Browse Events</a>
+    <a class="btn btn-danger w-100 mb-2" href="{% url 'event_list' %}">Browse Events</a>
+    <a class="btn btn-outline-secondary w-100" href="{% url 'home' %}">Back Home</a>
 </section>
 {% endblock %}

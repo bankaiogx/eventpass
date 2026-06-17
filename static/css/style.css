@@ -198,6 +198,40 @@ a {
     font-weight: 700;
 }
 
+.payment-result {
+    text-align: center;
+}
+
+.payment-icon {
+    align-items: center;
+    border-radius: 999px;
+    display: inline-flex;
+    font-size: 2rem;
+    height: 72px;
+    justify-content: center;
+    margin-bottom: 14px;
+    width: 72px;
+}
+
+.payment-icon.success {
+    background: #ECFDF3;
+    color: #027A48;
+}
+
+.payment-icon.cancelled {
+    background: #FEF3F2;
+    color: #B42318;
+}
+
+.payment-summary {
+    background: var(--page);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 18px 0;
+    padding: 14px;
+    text-align: left;
+}
+
 .filter-form {
     display: grid;
     gap: 16px;
