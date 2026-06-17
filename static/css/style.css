@@ -295,7 +295,12 @@ select {
     display: inline-flex;
     font-size: 0.82rem;
     font-weight: 700;
+    width: fit-content;
     padding: 4px 10px;
+}
+
+.ticket-row .status {
+    align-self: flex-start;
 }
 
 .available {
