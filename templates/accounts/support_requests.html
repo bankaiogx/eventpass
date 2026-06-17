@@ -16,6 +16,18 @@
                     <h2 class="h5 mb-1">{{ request.subject }}</h2>
                     {% if request.order %}
                         <p class="mb-1 text-muted">Order #{{ request.order.id }} - {{ request.order.event.title }}</p>
+                        {% if request.order.refund_status != "not_requested" %}
+                            <p class="mb-1">
+                                Refund:
+                                {% if request.order.refund_status == "requested" %}
+                                    <span class="badge text-bg-info">{{ request.order.get_refund_status_display }}</span>
+                                {% elif request.order.refund_status == "approved" or request.order.refund_status == "refunded" %}
+                                    <span class="badge text-bg-success">{{ request.order.get_refund_status_display }}</span>
+                                {% elif request.order.refund_status == "rejected" %}
+                                    <span class="badge text-bg-secondary">{{ request.order.get_refund_status_display }}</span>
+                                {% endif %}
+                            </p>
+                        {% endif %}
                     {% endif %}
                     <p class="mb-1">{{ request.message }}</p>
                     <small class="text-muted">{{ request.get_status_display }} - {{ request.created_at|date:"d M Y" }}</small>
