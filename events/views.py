@@ -117,13 +117,13 @@ def book_ticket(request, event_id):
             return redirect("book_ticket", event_id=event.id)
 
         if not settings.STRIPE_SECRET_KEY:
-            messages.error(request, "Stripe test keys need to be added before payment can work.")
+            messages.error(request, "Payment is not available right now. Please try again later.")
             return redirect("book_ticket", event_id=event.id)
 
         try:
             checkout_session = create_ticket_checkout_session(request, event, selected_tickets)
         except stripe.error.StripeError:
-            messages.error(request, "There was a problem starting Stripe checkout. Please try again.")
+            messages.error(request, "There was a problem starting payment. Please try again.")
             return redirect("book_ticket", event_id=event.id)
 
         return redirect(checkout_session.url)

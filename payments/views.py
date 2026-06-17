@@ -83,7 +83,7 @@ def payment_success(request):
     session_id = request.GET.get("session_id")
 
     if not session_id:
-        messages.error(request, "Stripe payment session was not found.")
+        messages.error(request, "Payment details could not be found.")
         return redirect("event_list")
 
     try:
