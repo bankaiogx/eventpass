@@ -3,6 +3,7 @@ import stripe
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 
@@ -10,6 +11,7 @@ from tickets.models import Order
 
 
 @login_required
+@require_POST
 def create_checkout_session(request, order_id):
     order = get_object_or_404(
         Order.objects.prefetch_related("items__ticket_type"),

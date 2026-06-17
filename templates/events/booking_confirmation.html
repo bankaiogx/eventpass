@@ -22,7 +22,12 @@
     <p>Status: {{ order.get_payment_status_display }}</p>
 
     {% if order.payment_status != "paid" %}
-        <a class="btn btn-danger w-100 mb-2" href="{% url 'create_checkout_session' order.id %}">Pay with Stripe</a>
+        <form method="post" action="{% url 'create_checkout_session' order.id %}">
+            {% csrf_token %}
+            <button class="btn btn-danger w-100 mb-2" type="submit">
+                <i class="bi bi-credit-card"></i> Pay with Stripe
+            </button>
+        </form>
     {% endif %}
     <a class="btn btn-danger w-100 mb-2" href="{% url 'my_tickets' %}">View My Tickets</a>
     <a class="btn btn-outline-secondary w-100" href="{% url 'event_list' %}">Browse More Events</a>
