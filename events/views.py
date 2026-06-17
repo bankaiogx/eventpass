@@ -105,8 +105,12 @@ def book_ticket(request, event_id):
                 messages.error(request, "Please choose a valid ticket quantity.")
                 return redirect("book_ticket", event_id=event.id)
 
-            if quantity > ticket.quantity_available:
+            if quantity < 0:
                 messages.error(request, "Please choose a valid ticket quantity.")
+                return redirect("book_ticket", event_id=event.id)
+
+            if quantity > ticket.quantity_available:
+                messages.error(request, f"Only {ticket.quantity_available} {ticket.name} tickets are available.")
                 return redirect("book_ticket", event_id=event.id)
 
             if quantity > 0:
