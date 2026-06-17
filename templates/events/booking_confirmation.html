@@ -6,6 +6,8 @@
 <section class="auth-card">
     <h1>Booking Confirmed</h1>
     <p class="text-muted">{{ order.event.title }}</p>
+    <p class="mb-1">Order #{{ order.id }}</p>
+    <p class="text-muted">Booked on {{ order.created_at|date:"d M Y" }}</p>
 
     <div class="list-group mb-3">
         {% for item in order.items.all %}
