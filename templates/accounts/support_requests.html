@@ -38,7 +38,15 @@
                         {% endif %}
                     {% endif %}
                     <p class="mb-1">{{ request.message }}</p>
-                    <small class="text-muted">{{ request.get_status_display }} - {{ request.created_at|date:"d M Y" }}</small>
+                    <p class="mb-1">
+                        Status:
+                        {% if request.status == "open" %}
+                            <span class="badge text-bg-success">{{ request.get_status_display }}</span>
+                        {% else %}
+                            <span class="badge text-bg-secondary">{{ request.get_status_display }}</span>
+                        {% endif %}
+                    </p>
+                    <small class="text-muted">Created {{ request.created_at|date:"d M Y" }}</small>
                     {% if request.status == "open" %}
                         <a class="btn btn-outline-secondary w-100 mt-2" href="{% url 'edit_support_request' request.id %}">Edit</a>
                         <a class="btn btn-outline-secondary w-100 mt-2" href="{% url 'delete_support_request' request.id %}">Delete</a>
