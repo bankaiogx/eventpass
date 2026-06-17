@@ -68,6 +68,7 @@ class Order(models.Model):
         self.stock_returned = True
         self.payment_status = "cancelled"
         self.save(update_fields=["stock_returned", "payment_status"])
+        self.support_requests.filter(request_type="cancel_order").update(status="closed")
 
 
 class OrderItem(models.Model):
