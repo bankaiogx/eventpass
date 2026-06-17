@@ -30,6 +30,7 @@
                     <small class="text-muted">Ordered on {{ order.created_at|date:"d M Y" }}</small>
                     <a class="btn btn-outline-secondary w-100 mt-2" href="{% url 'booking_confirmation' order.id %}">View Order</a>
                     <a class="btn btn-outline-secondary w-100 mt-2" href="{% url 'create_support_request' %}">Get Help</a>
+                    <a class="btn btn-outline-secondary w-100 mt-2" href="{% url 'create_support_request' %}?order={{ order.id }}&type=cancel_order">Request Cancellation</a>
                 </div>
             {% endfor %}
         </div>

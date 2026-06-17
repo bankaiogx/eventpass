@@ -6,6 +6,9 @@
 <section class="auth-card">
     <h1>Get Help</h1>
     <p class="text-muted">Send a message if you need help with a booking.</p>
+    {% if order %}
+        <p class="text-muted">Order #{{ order.id }} - {{ order.event.title }}</p>
+    {% endif %}
 
     <form method="post">
         {% csrf_token %}

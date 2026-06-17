@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from tickets.models import Order
 
@@ -35,15 +35,32 @@ def support_requests(request):
 
 @login_required
 def create_support_request(request):
+    order = None
+    request_type = request.GET.get("type", "general")
+    order_id = request.GET.get("order")
+
+    if order_id:
+        order = get_object_or_404(Order, id=order_id, user=request.user)
+
     if request.method == "POST":
         form = SupportRequestForm(request.POST)
         if form.is_valid():
             support_request = form.save(commit=False)
             support_request.user = request.user
+            support_request.order = order
+            support_request.request_type = request_type
             support_request.save()
             messages.success(request, "Your support request has been sent.")
             return redirect("support_requests")
     else:
-        form = SupportRequestForm()
+        initial = {}
 
-    return render(request, "accounts/support_request_form.html", {"form": form})
+        if order and request_type == "cancel_order":
+            initial = {
+                "subject": f"Cancel order #{order.id}",
+                "message": f"I would like to request cancellation for order #{order.id}.",
+            }
+
+        form = SupportRequestForm(initial=initial)
+
+    return render(request, "accounts/support_request_form.html", {"form": form, "order": order, "request_type": request_type})
