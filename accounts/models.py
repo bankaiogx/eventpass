@@ -1,14 +1,23 @@
 from django.conf import settings
 from django.db import models
 
+from tickets.models import Order
+
 
 class SupportRequest(models.Model):
+    REQUEST_TYPE_CHOICES = [
+        ("general", "General help"),
+        ("cancel_order", "Cancel order"),
+    ]
+
     STATUS_CHOICES = [
         ("open", "Open"),
         ("closed", "Closed"),
     ]
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="support_requests")
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="support_requests", blank=True, null=True)
+    request_type = models.CharField(max_length=30, choices=REQUEST_TYPE_CHOICES, default="general")
     subject = models.CharField(max_length=150)
     message = models.TextField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="open")

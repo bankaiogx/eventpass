@@ -5,7 +5,7 @@ from .models import SupportRequest
 
 @admin.register(SupportRequest)
 class SupportRequestAdmin(admin.ModelAdmin):
-    list_display = ("subject", "user", "status", "created_at")
-    list_filter = ("status", "created_at")
-    search_fields = ("subject", "message", "user__username", "user__email")
+    list_display = ("subject", "user", "request_type", "order", "status", "created_at")
+    list_filter = ("request_type", "status", "created_at")
+    search_fields = ("subject", "message", "user__username", "user__email", "order__id")
     readonly_fields = ("created_at", "updated_at")
