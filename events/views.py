@@ -71,7 +71,7 @@ def event_detail(request, event_id):
         id=event_id,
         is_published=True,
     )
-    ticket_types = event.ticket_types.filter(sale_active=True).order_by("price")
+    ticket_types = event.ticket_types.filter(sale_active=True, quantity_available__gt=0).order_by("price")
 
     context = {
         "event": event,
@@ -83,7 +83,7 @@ def event_detail(request, event_id):
 @login_required
 def book_ticket(request, event_id):
     event = get_object_or_404(Event, id=event_id, is_published=True)
-    ticket_types = event.ticket_types.filter(sale_active=True).order_by("price")
+    ticket_types = event.ticket_types.filter(sale_active=True, quantity_available__gt=0).order_by("price")
 
     if request.method == "POST":
         selected_tickets = []
