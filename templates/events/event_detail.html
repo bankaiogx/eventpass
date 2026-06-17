@@ -20,6 +20,15 @@
                     <p class="event-meta">Ends at {{ event.end_time }}</p>
                 {% endif %}
                 <p class="event-meta">{{ event.venue.name }}, {{ event.venue.city }}</p>
+                <p class="event-meta">{{ event.venue.address }}, {{ event.venue.postcode }}</p>
+                <a
+                    class="btn btn-outline-secondary mb-3"
+                    href="https://www.google.com/maps/search/?api=1&query={{ event.venue.name|urlencode }}%20{{ event.venue.address|urlencode }}%20{{ event.venue.city|urlencode }}%20{{ event.venue.postcode|urlencode }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View on Google Maps
+                </a>
                 <p>{{ event.description }}</p>
             </div>
         </section>
