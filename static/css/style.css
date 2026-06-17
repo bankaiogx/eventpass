@@ -292,7 +292,32 @@ a {
     align-items: center;
     display: grid;
     gap: 16px;
-    grid-template-columns: 1fr 120px;
+    grid-template-columns: 1fr 170px;
+}
+
+.quantity-control {
+    display: grid;
+    grid-template-columns: 42px 1fr 42px;
+}
+
+.quantity-control .form-control {
+    border-radius: 0;
+    text-align: center;
+}
+
+.quantity-button {
+    background: var(--navy);
+    border: 1px solid var(--navy);
+    color: var(--white);
+    font-weight: 700;
+}
+
+.quantity-button:first-child {
+    border-radius: 6px 0 0 6px;
+}
+
+.quantity-button:last-child {
+    border-radius: 0 6px 6px 0;
 }
 
 .booking-total {

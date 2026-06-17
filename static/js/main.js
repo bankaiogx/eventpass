@@ -35,6 +35,26 @@ ticketInputs.forEach(function (input) {
 
 updateBookingTotal();
 
+const quantityButtons = document.querySelectorAll(".quantity-button");
+
+quantityButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        const input = this.parentElement.querySelector(".ticket-quantity");
+        const currentValue = Number(input.value) || 0;
+        const maxValue = Number(input.max) || 0;
+
+        if (this.dataset.action === "increase" && currentValue < maxValue) {
+            input.value = currentValue + 1;
+        }
+
+        if (this.dataset.action === "decrease" && currentValue > 0) {
+            input.value = currentValue - 1;
+        }
+
+        updateBookingTotal();
+    });
+});
+
 if (document.querySelector("dotlottie-player")) {
     const script = document.createElement("script");
     script.type = "module";

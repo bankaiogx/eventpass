@@ -22,7 +22,11 @@
                         </div>
                         <div>
                             <label class="form-label" for="ticket_{{ ticket.id }}">Quantity</label>
-                            <input class="form-control ticket-quantity" id="ticket_{{ ticket.id }}" name="ticket_{{ ticket.id }}" type="number" min="0" max="{{ ticket.quantity_available }}" value="0" data-price="{{ ticket.price }}">
+                            <div class="quantity-control">
+                                <button class="quantity-button" type="button" data-action="decrease" aria-label="Decrease {{ ticket.name }} quantity">-</button>
+                                <input class="form-control ticket-quantity" id="ticket_{{ ticket.id }}" name="ticket_{{ ticket.id }}" type="number" min="0" max="{{ ticket.quantity_available }}" value="0" data-price="{{ ticket.price }}">
+                                <button class="quantity-button" type="button" data-action="increase" aria-label="Increase {{ ticket.name }} quantity">+</button>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
