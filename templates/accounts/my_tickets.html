@@ -33,6 +33,9 @@
                                 <span class="badge text-bg-secondary">{{ order.get_refund_status_display }}</span>
                             {% endif %}
                         </p>
+                        {% if order.refund_status == "refunded" %}
+                            <p class="mb-1 text-muted">Your refund has been processed.</p>
+                        {% endif %}
                     {% endif %}
                     <ul class="mb-2 ps-3">
                         {% for item in order.items.all %}
