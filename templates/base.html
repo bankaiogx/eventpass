@@ -26,6 +26,7 @@
                         <li class="nav-item"><a class="nav-link" data-nav="events" href="{% url 'event_list' %}">Events</a></li>
                         <li class="nav-item"><a class="nav-link" data-nav="tickets" href="{% url 'my_tickets' %}">My Tickets</a></li>
                         {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" data-nav="profile" href="{% url 'profile' %}">Profile</a></li>
                             <li class="nav-item"><a class="nav-link" data-nav="support" href="{% url 'support_requests' %}">Support</a></li>
                             <li class="nav-item">
                                 <form method="post" action="{% url 'logout' %}">

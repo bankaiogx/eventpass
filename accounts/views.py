@@ -1,12 +1,13 @@
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import get_object_or_404, redirect, render
 
 from tickets.models import Order
 
-from .forms import RegisterForm, SupportRequestForm
-from .models import SupportRequest
+from .forms import ProfileForm, RegisterForm, SupportRequestForm
+from .models import Profile, SupportRequest
 
 
 def register(request):
@@ -21,6 +22,43 @@ def register(request):
         form = RegisterForm()
 
     return render(request, "accounts/register.html", {"form": form})
+
+
+@login_required
+def profile(request):
+    user_profile, _ = Profile.objects.get_or_create(user=request.user)
+    profile_form = ProfileForm(instance=request.user, profile=user_profile)
+    password_form = PasswordChangeForm(request.user)
+
+    if request.method == "POST":
+        if "save_profile" in request.POST:
+            profile_form = ProfileForm(request.POST, instance=request.user, profile=user_profile)
+
+            if profile_form.is_valid():
+                profile_form.save()
+                messages.success(request, "Profile updated.")
+                return redirect("profile")
+
+        if "change_password" in request.POST:
+            password_form = PasswordChangeForm(request.user, request.POST)
+
+            if password_form.is_valid():
+                user = password_form.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, "Password updated.")
+                return redirect("profile")
+
+    for field in password_form.fields.values():
+        field.widget.attrs.update({"class": "form-control"})
+
+    return render(
+        request,
+        "accounts/profile.html",
+        {
+            "profile_form": profile_form,
+            "password_form": password_form,
+        },
+    )
 
 
 @login_required

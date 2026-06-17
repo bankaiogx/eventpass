@@ -100,6 +100,10 @@ navLinks.forEach(function (link) {
         link.classList.add("active");
     }
 
+    if (navType === "profile" && currentPath.startsWith("/accounts/profile/")) {
+        link.classList.add("active");
+    }
+
     if (navType === "login" && currentPath.startsWith("/accounts/login/")) {
         link.classList.add("active");
     }
