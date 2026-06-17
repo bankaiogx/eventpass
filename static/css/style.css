@@ -293,6 +293,15 @@ a {
     text-align: left;
 }
 
+.order-confirmation {
+    text-align: center;
+}
+
+.order-confirmation .list-group,
+.order-confirmation .list-group-item {
+    text-align: left;
+}
+
 .booking-ticket-row {
     align-items: center;
     display: grid;
