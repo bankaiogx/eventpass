@@ -46,7 +46,7 @@
                     </div>
                     <a class="btn btn-danger w-100" href="{% url 'book_ticket' event.id %}">Book Tickets</a>
                 {% else %}
-                    <p class="status sold-out">Sold out</p>
+                    <span class="status sold-out">Sold out</span>
                     <p>No tickets are currently available for this event.</p>
                 {% endif %}
             </div>
