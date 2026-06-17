@@ -3,7 +3,7 @@ import stripe
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.db.models import Min, Q
+from django.db.models import Count, Min, Q
 from django.shortcuts import get_object_or_404, redirect, render
 
 from payments.stripe_checkout import create_ticket_checkout_session
@@ -16,7 +16,10 @@ def home(request):
     featured_events = (
         Event.objects.filter(is_published=True)
         .select_related("category", "venue")
-        .annotate(starting_price=Min("ticket_types__price"))
+        .annotate(
+            starting_price=Min("ticket_types__price", filter=Q(ticket_types__sale_active=True, ticket_types__quantity_available__gt=0)),
+            available_ticket_count=Count("ticket_types", filter=Q(ticket_types__sale_active=True, ticket_types__quantity_available__gt=0)),
+        )
         .order_by("start_date", "start_time")[:3]
     )
     categories = Category.objects.all()[:6]
@@ -32,7 +35,10 @@ def event_list(request):
     events = (
         Event.objects.filter(is_published=True)
         .select_related("category", "venue")
-        .annotate(starting_price=Min("ticket_types__price"))
+        .annotate(
+            starting_price=Min("ticket_types__price", filter=Q(ticket_types__sale_active=True, ticket_types__quantity_available__gt=0)),
+            available_ticket_count=Count("ticket_types", filter=Q(ticket_types__sale_active=True, ticket_types__quantity_available__gt=0)),
+        )
         .order_by("start_date", "start_time")
     )
 

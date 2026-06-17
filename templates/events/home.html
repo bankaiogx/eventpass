@@ -68,7 +68,7 @@
                             <h2 class="card-title h5 mt-3">{{ event.title }}</h2>
                             <p class="card-text text-muted mb-1">{{ event.start_date }} at {{ event.start_time }}</p>
                             <p class="card-text text-muted">{{ event.venue.city }}</p>
-                            {% if event.starting_price is not None %}
+                            {% if event.available_ticket_count %}
                                 <p class="price">From £{{ event.starting_price }}</p>
                                 <p class="status available">Tickets available</p>
                             {% else %}
