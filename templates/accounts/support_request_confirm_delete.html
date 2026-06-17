@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Request | EventPass{% endblock %}
+
+{% block content %}
+<section class="auth-card">
+    <h1>Delete Request</h1>
+    <p class="text-muted">Are you sure you want to delete this support request?</p>
+    <p>{{ support_request.subject }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger w-100 mb-2" type="submit">Delete Request</button>
+        <a class="btn btn-outline-secondary w-100" href="{% url 'support_requests' %}">Cancel</a>
+    </form>
+</section>
+{% endblock %}

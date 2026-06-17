@@ -18,6 +18,7 @@
                     <small class="text-muted">{{ request.get_status_display }} - {{ request.created_at|date:"d M Y" }}</small>
                     {% if request.status == "open" %}
                         <a class="btn btn-outline-secondary w-100 mt-2" href="{% url 'edit_support_request' request.id %}">Edit</a>
+                        <a class="btn btn-outline-secondary w-100 mt-2" href="{% url 'delete_support_request' request.id %}">Delete</a>
                     {% endif %}
                 </div>
             {% endfor %}

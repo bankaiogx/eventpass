@@ -13,4 +13,5 @@ urlpatterns = [
     path("support/", views.support_requests, name="support_requests"),
     path("support/new/", views.create_support_request, name="create_support_request"),
     path("support/<int:request_id>/edit/", views.edit_support_request, name="edit_support_request"),
+    path("support/<int:request_id>/delete/", views.delete_support_request, name="delete_support_request"),
 ]

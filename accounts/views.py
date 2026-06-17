@@ -80,3 +80,15 @@ def edit_support_request(request, request_id):
         form = SupportRequestForm(instance=support_request)
 
     return render(request, "accounts/support_request_form.html", {"form": form, "support_request": support_request})
+
+
+@login_required
+def delete_support_request(request, request_id):
+    support_request = get_object_or_404(SupportRequest, id=request_id, user=request.user, status="open")
+
+    if request.method == "POST":
+        support_request.delete()
+        messages.success(request, "Your support request has been deleted.")
+        return redirect("support_requests")
+
+    return render(request, "accounts/support_request_confirm_delete.html", {"support_request": support_request})
