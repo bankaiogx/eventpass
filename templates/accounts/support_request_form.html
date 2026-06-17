@@ -4,8 +4,8 @@
 
 {% block content %}
 <section class="auth-card">
-    <h1>Get Help</h1>
-    <p class="text-muted">Send a message if you need help with a booking.</p>
+    <h1>{% if support_request %}Edit Request{% else %}Get Help{% endif %}</h1>
+    <p class="text-muted">{% if support_request %}Update your support request.{% else %}Send a message if you need help with a booking.{% endif %}</p>
     {% if order %}
         <p class="text-muted">Order #{{ order.id }} - {{ order.event.title }}</p>
     {% endif %}
@@ -20,7 +20,7 @@
             <label class="form-label" for="{{ form.message.id_for_label }}">Message</label>
             {{ form.message }}
         </div>
-        <button class="btn btn-danger w-100" type="submit">Send Request</button>
+        <button class="btn btn-danger w-100" type="submit">{% if support_request %}Update Request{% else %}Send Request{% endif %}</button>
     </form>
 </section>
 {% endblock %}

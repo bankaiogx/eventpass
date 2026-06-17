@@ -64,3 +64,19 @@ def create_support_request(request):
         form = SupportRequestForm(initial=initial)
 
     return render(request, "accounts/support_request_form.html", {"form": form, "order": order, "request_type": request_type})
+
+
+@login_required
+def edit_support_request(request, request_id):
+    support_request = get_object_or_404(SupportRequest, id=request_id, user=request.user, status="open")
+
+    if request.method == "POST":
+        form = SupportRequestForm(request.POST, instance=support_request)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your support request has been updated.")
+            return redirect("support_requests")
+    else:
+        form = SupportRequestForm(instance=support_request)
+
+    return render(request, "accounts/support_request_form.html", {"form": form, "support_request": support_request})
