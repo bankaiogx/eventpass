@@ -6,6 +6,8 @@
 <article class="event-detail">
     {% if event.image %}
         <img class="detail-image" src="{{ event.image.url }}" alt="{{ event.title }}">
+    {% else %}
+        <div class="detail-image event-image-placeholder">{{ event.category.name }}</div>
     {% endif %}
 
     <div class="row g-4">

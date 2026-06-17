@@ -267,6 +267,17 @@ select {
     width: 100%;
 }
 
+.event-image-placeholder {
+    align-items: center;
+    aspect-ratio: 16 / 9;
+    background: var(--navy);
+    color: var(--white);
+    display: flex;
+    font-weight: 700;
+    justify-content: center;
+    width: 100%;
+}
+
 .event-card-content {
     padding: 18px;
 }
