@@ -17,8 +17,8 @@ class SupportRequestAdmin(admin.ModelAdmin):
 
 @admin.register(CancellationRequest)
 class CancellationRequestAdmin(admin.ModelAdmin):
-    list_display = ("subject", "user", "order", "status", "created_at")
-    list_filter = ("status", "created_at")
+    list_display = ("subject", "user", "order", "order_payment_status", "order_refund_status", "status", "created_at")
+    list_filter = ("status", "created_at", "order__payment_status", "order__refund_status")
     search_fields = ("subject", "message", "user__username", "user__email", "order__id")
     readonly_fields = ("created_at", "updated_at")
 
@@ -29,3 +29,15 @@ class CancellationRequestAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.request_type = "cancel_order"
         super().save_model(request, obj, form, change)
+
+    @admin.display(description="Payment status")
+    def order_payment_status(self, obj):
+        if obj.order:
+            return obj.order.get_payment_status_display()
+        return "-"
+
+    @admin.display(description="Refund status")
+    def order_refund_status(self, obj):
+        if obj.order:
+            return obj.order.get_refund_status_display()
+        return "-"
