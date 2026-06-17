@@ -21,6 +21,9 @@
     <p>Total: £{{ order.total_amount }}</p>
     <p>Status: {{ order.get_payment_status_display }}</p>
 
+    {% if order.payment_status != "paid" %}
+        <a class="btn btn-danger w-100 mb-2" href="{% url 'create_checkout_session' order.id %}">Pay with Stripe</a>
+    {% endif %}
     <a class="btn btn-danger w-100 mb-2" href="{% url 'my_tickets' %}">View My Tickets</a>
     <a class="btn btn-outline-secondary w-100" href="{% url 'event_list' %}">Browse More Events</a>
 </section>
