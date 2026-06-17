@@ -5,7 +5,9 @@
 
 {% block content %}
 <section class="auth-card payment-result">
-    <dotlottie-player class="payment-animation" src="{% static 'lottie/payment_successful.lottie' %}" autoplay></dotlottie-player>
+    <div class="payment-animation-frame">
+        <dotlottie-player class="payment-animation" src="{% static 'lottie/payment_successful.lottie' %}" autoplay></dotlottie-player>
+    </div>
     <p class="text-muted">Your payment for {{ order.event.title }} has been completed.</p>
 
     <div class="payment-summary">
