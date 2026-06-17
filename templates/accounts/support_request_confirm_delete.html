@@ -11,7 +11,7 @@
     <form method="post">
         {% csrf_token %}
         <button class="btn btn-danger w-100 mb-2" type="submit">Delete Request</button>
-        <a class="btn btn-outline-secondary w-100" href="{% url 'support_requests' %}">Cancel</a>
+        <a class="btn btn-dark w-100" href="{% url 'support_requests' %}">Cancel</a>
     </form>
 </section>
 {% endblock %}
