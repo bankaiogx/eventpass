@@ -26,6 +26,14 @@ class Order(models.Model):
         ("failed", "Failed"),
     ]
 
+    REFUND_STATUS_CHOICES = [
+        ("not_requested", "Not requested"),
+        ("requested", "Requested"),
+        ("approved", "Approved"),
+        ("rejected", "Rejected"),
+        ("refunded", "Refunded"),
+    ]
+
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orders")
     event = models.ForeignKey(Event, on_delete=models.PROTECT, related_name="orders")
     total_amount = models.DecimalField(max_digits=8, decimal_places=2)
@@ -34,6 +42,11 @@ class Order(models.Model):
         max_length=20,
         choices=PAYMENT_STATUS_CHOICES,
         default="pending",
+    )
+    refund_status = models.CharField(
+        max_length=20,
+        choices=REFUND_STATUS_CHOICES,
+        default="not_requested",
     )
     created_at = models.DateTimeField(auto_now_add=True)
 

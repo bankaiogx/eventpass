@@ -13,9 +13,10 @@ class TicketTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("id", "user", "event", "total_amount", "payment_status", "created_at")
-    list_filter = ("payment_status", "created_at", "event")
+    list_display = ("id", "user", "event", "total_amount", "payment_status", "refund_status", "created_at")
+    list_filter = ("payment_status", "refund_status", "created_at", "event")
     search_fields = ("user__username", "user__email", "event__title", "stripe_checkout_id")
+    list_editable = ("refund_status",)
     readonly_fields = ("created_at",)
 
 
