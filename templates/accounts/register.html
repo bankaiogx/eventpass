@@ -9,17 +9,30 @@
 
     <form method="post">
         {% csrf_token %}
+        {% if form.errors %}
+            <div class="message error mb-3">
+                Please check the form and try again.
+            </div>
+        {% endif %}
         <div class="mb-3">
             <label class="form-label" for="{{ form.username.id_for_label }}">Username</label>
             {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email }}
+            {{ form.email.errors }}
         </div>
         <div class="mb-3">
             <label class="form-label" for="{{ form.password1.id_for_label }}">Password</label>
             {{ form.password1 }}
+            {{ form.password1.errors }}
         </div>
         <div class="mb-3">
             <label class="form-label" for="{{ form.password2.id_for_label }}">Confirm password</label>
             {{ form.password2 }}
+            {{ form.password2.errors }}
         </div>
         <button class="btn btn-danger w-100" type="submit">Register</button>
     </form>
