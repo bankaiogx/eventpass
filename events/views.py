@@ -6,8 +6,8 @@ from django.contrib import messages
 from django.db.models import Min, Q
 from django.shortcuts import get_object_or_404, redirect, render
 
-from payments.stripe_checkout import create_order_checkout_session
-from tickets.models import Order, OrderItem
+from payments.stripe_checkout import create_ticket_checkout_session
+from tickets.models import Order
 
 from .models import Category, Event, Venue
 
@@ -91,7 +91,6 @@ def book_ticket(request, event_id):
 
     if request.method == "POST":
         selected_tickets = []
-        total_amount = 0
 
         for ticket in ticket_types:
             try:
@@ -106,42 +105,20 @@ def book_ticket(request, event_id):
 
             if quantity > 0:
                 selected_tickets.append((ticket, quantity))
-                total_amount += ticket.price * quantity
 
         if not selected_tickets:
             messages.error(request, "Please choose at least one ticket.")
             return redirect("book_ticket", event_id=event.id)
 
-        order = Order.objects.create(
-            user=request.user,
-            event=event,
-            total_amount=total_amount,
-        )
-
-        for ticket, quantity in selected_tickets:
-            OrderItem.objects.create(
-                order=order,
-                ticket_type=ticket,
-                quantity=quantity,
-                price_at_purchase=ticket.price,
-            )
-
         if not settings.STRIPE_SECRET_KEY:
-            order.payment_status = "failed"
-            order.save()
             messages.error(request, "Stripe test keys need to be added before payment can work.")
-            return redirect("booking_confirmation", order_id=order.id)
+            return redirect("book_ticket", event_id=event.id)
 
         try:
-            checkout_session = create_order_checkout_session(request, order)
+            checkout_session = create_ticket_checkout_session(request, event, selected_tickets)
         except stripe.error.StripeError:
-            order.payment_status = "failed"
-            order.save()
             messages.error(request, "There was a problem starting Stripe checkout. Please try again.")
-            return redirect("booking_confirmation", order_id=order.id)
-
-        order.stripe_checkout_id = checkout_session.id
-        order.save()
+            return redirect("book_ticket", event_id=event.id)
 
         return redirect(checkout_session.url)
 
