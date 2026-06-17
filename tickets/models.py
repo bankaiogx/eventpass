@@ -48,6 +48,7 @@ class Order(models.Model):
         choices=REFUND_STATUS_CHOICES,
         default="not_requested",
     )
+    stock_returned = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -55,6 +56,18 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order {self.id} - {self.user}"
+
+    def return_ticket_stock(self):
+        if self.stock_returned:
+            return
+
+        for item in self.items.select_related("ticket_type"):
+            item.ticket_type.quantity_available += item.quantity
+            item.ticket_type.save(update_fields=["quantity_available"])
+
+        self.stock_returned = True
+        self.payment_status = "cancelled"
+        self.save(update_fields=["stock_returned", "payment_status"])
 
 
 class OrderItem(models.Model):

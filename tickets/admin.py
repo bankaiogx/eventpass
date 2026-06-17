@@ -19,6 +19,12 @@ class OrderAdmin(admin.ModelAdmin):
     list_editable = ("refund_status",)
     readonly_fields = ("created_at",)
 
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+
+        if obj.refund_status == "refunded":
+            obj.return_ticket_stock()
+
 
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
