@@ -9,11 +9,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
 
-from .stripe_checkout import create_order_checkout_session
 from events.models import Event
 from tickets.models import Order, OrderItem, TicketType
 
@@ -69,35 +67,6 @@ def create_order_from_stripe_session(session):
         )
 
     return order
-
-
-@login_required
-@require_POST
-def create_checkout_session(request, order_id):
-    order = get_object_or_404(
-        Order.objects.prefetch_related("items__ticket_type"),
-        id=order_id,
-        user=request.user,
-    )
-
-    if order.payment_status == "paid":
-        messages.info(request, "This order has already been paid.")
-        return redirect("booking_confirmation", order_id=order.id)
-
-    if not settings.STRIPE_SECRET_KEY:
-        messages.error(request, "Stripe test keys need to be added before payment can work.")
-        return redirect("booking_confirmation", order_id=order.id)
-
-    try:
-        checkout_session = create_order_checkout_session(request, order)
-    except stripe.error.StripeError:
-        messages.error(request, "There was a problem starting Stripe checkout. Please try again.")
-        return redirect("booking_confirmation", order_id=order.id)
-
-    order.stripe_checkout_id = checkout_session.id
-    order.save()
-
-    return redirect(checkout_session.url)
 
 
 @login_required
