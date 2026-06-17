@@ -45,16 +45,18 @@ def create_order_from_stripe_session(session):
 
     metadata = stripe_value(session, "metadata", {}) or {}
 
-    if metadata.get("order_id"):
-        order = Order.objects.filter(id=metadata["order_id"]).prefetch_related("items__ticket_type").first()
+    order_id = stripe_value(metadata, "order_id")
+
+    if order_id:
+        order = Order.objects.filter(id=order_id).prefetch_related("items__ticket_type").first()
         if order:
             order.stripe_checkout_id = session_id
             order.save()
             return order
 
-    user = get_user_model().objects.get(id=metadata["user_id"])
-    event = Event.objects.get(id=metadata["event_id"])
-    ticket_data = json.loads(metadata["tickets"])
+    user = get_user_model().objects.get(id=stripe_value(metadata, "user_id"))
+    event = Event.objects.get(id=stripe_value(metadata, "event_id"))
+    ticket_data = json.loads(stripe_value(metadata, "tickets"))
     total_amount = Decimal(stripe_value(session, "amount_total", 0) or 0) / Decimal("100")
 
     order = Order.objects.create(
