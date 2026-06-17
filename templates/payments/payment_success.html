@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Payment Successful | EventPass{% endblock %}
+
+{% block content %}
+<section class="auth-card">
+    <h1>Payment Successful</h1>
+    <p class="text-muted">Your payment for {{ order.event.title }} has been completed.</p>
+
+    <p class="mb-1">Order #{{ order.id }}</p>
+    <p>Total paid: £{{ order.total_amount }}</p>
+
+    <a class="btn btn-danger w-100 mb-2" href="{% url 'booking_confirmation' order.id %}">View Order</a>
+    <a class="btn btn-outline-secondary w-100" href="{% url 'my_tickets' %}">My Tickets</a>
+</section>
+{% endblock %}

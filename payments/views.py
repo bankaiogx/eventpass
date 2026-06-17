@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
 from tickets.models import Order
@@ -28,7 +28,8 @@ def create_checkout_session(request, order_id):
         return redirect("booking_confirmation", order_id=order.id)
 
     stripe.api_key = settings.STRIPE_SECRET_KEY
-    order_url = request.build_absolute_uri(reverse("booking_confirmation", args=[order.id]))
+    success_url = request.build_absolute_uri(reverse("payment_success", args=[order.id]))
+    cancel_url = request.build_absolute_uri(reverse("booking_confirmation", args=[order.id]))
 
     checkout_session = stripe.checkout.Session.create(
         payment_method_types=["card"],
@@ -46,11 +47,24 @@ def create_checkout_session(request, order_id):
             }
             for item in order.items.all()
         ],
-        success_url=order_url,
-        cancel_url=order_url,
+        success_url=success_url,
+        cancel_url=cancel_url,
     )
 
     order.stripe_checkout_id = checkout_session.id
     order.save()
 
     return redirect(checkout_session.url)
+
+
+@login_required
+def payment_success(request, order_id):
+    order = get_object_or_404(
+        Order.objects.select_related("event").prefetch_related("items__ticket_type"),
+        id=order_id,
+        user=request.user,
+    )
+    order.payment_status = "paid"
+    order.save()
+
+    return render(request, "payments/payment_success.html", {"order": order})
