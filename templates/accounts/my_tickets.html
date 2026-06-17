@@ -5,6 +5,7 @@
 {% block content %}
 <section class="auth-card">
     <h1>My Tickets</h1>
+    <p class="text-muted">Your recent bookings are shown below.</p>
     {% if orders %}
         <div class="list-group mb-3">
             {% for order in orders %}
