@@ -33,8 +33,9 @@
             </div>
             <div class="booking-total">
                 Estimated total: £<span id="booking-total">0.00</span>
+                <span class="selected-count" id="selected-ticket-count">No tickets selected</span>
             </div>
-            <button class="btn btn-danger w-100 mb-2" type="submit">Continue to Payment</button>
+            <button class="btn btn-danger w-100 mb-2" id="checkout-button" type="submit">Continue to Payment</button>
         </form>
     {% else %}
         <p class="text-muted">No tickets are available for this event.</p>

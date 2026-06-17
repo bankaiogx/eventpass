@@ -12,18 +12,34 @@ cards.forEach(function (card) {
 
 const ticketInputs = document.querySelectorAll(".ticket-quantity");
 const bookingTotal = document.getElementById("booking-total");
+const selectedTicketCount = document.getElementById("selected-ticket-count");
+const checkoutButton = document.getElementById("checkout-button");
 
 function updateBookingTotal() {
     let total = 0;
+    let ticketCount = 0;
 
     ticketInputs.forEach(function (input) {
         const quantity = Number(input.value) || 0;
         const price = Number(input.dataset.price) || 0;
+        ticketCount += quantity;
         total += quantity * price;
     });
 
     if (bookingTotal) {
         bookingTotal.textContent = total.toFixed(2);
+    }
+
+    if (selectedTicketCount) {
+        if (ticketCount === 0) {
+            selectedTicketCount.textContent = "No tickets selected";
+        } else {
+            selectedTicketCount.textContent = ticketCount === 1 ? "1 ticket selected" : ticketCount + " tickets selected";
+        }
+    }
+
+    if (checkoutButton) {
+        checkoutButton.disabled = ticketCount === 0;
     }
 }
 
@@ -61,3 +77,34 @@ if (document.querySelector("dotlottie-player")) {
     script.src = "https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs";
     document.body.appendChild(script);
 }
+
+const navLinks = document.querySelectorAll("[data-nav]");
+const currentPath = window.location.pathname;
+
+navLinks.forEach(function (link) {
+    const navType = link.dataset.nav;
+
+    if (navType === "home" && currentPath === "/") {
+        link.classList.add("active");
+    }
+
+    if (navType === "events" && currentPath.startsWith("/events/")) {
+        link.classList.add("active");
+    }
+
+    if (navType === "tickets" && currentPath.startsWith("/accounts/my-tickets/")) {
+        link.classList.add("active");
+    }
+
+    if (navType === "support" && currentPath.startsWith("/accounts/support/")) {
+        link.classList.add("active");
+    }
+
+    if (navType === "login" && currentPath.startsWith("/accounts/login/")) {
+        link.classList.add("active");
+    }
+
+    if (navType === "register" && currentPath.startsWith("/accounts/register/")) {
+        link.classList.add("active");
+    }
+});
