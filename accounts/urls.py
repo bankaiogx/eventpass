@@ -10,4 +10,6 @@ urlpatterns = [
     path("login/", auth_views.LoginView.as_view(authentication_form=LoginForm, template_name="accounts/login.html"), name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("my-tickets/", views.my_tickets, name="my_tickets"),
+    path("support/", views.support_requests, name="support_requests"),
+    path("support/new/", views.create_support_request, name="create_support_request"),
 ]
