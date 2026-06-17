@@ -14,6 +14,14 @@
             {% for request in requests %}
                 <div class="list-group-item">
                     <h2 class="h5 mb-1">{{ request.subject }}</h2>
+                    <p class="mb-1">
+                        Type:
+                        {% if request.request_type == "cancel_order" %}
+                            <span class="badge text-bg-warning">{{ request.get_request_type_display }}</span>
+                        {% else %}
+                            <span class="badge text-bg-secondary">{{ request.get_request_type_display }}</span>
+                        {% endif %}
+                    </p>
                     {% if request.order %}
                         <p class="mb-1 text-muted">Order #{{ request.order.id }} - {{ request.order.event.title }}</p>
                         {% if request.order.refund_status != "not_requested" %}
