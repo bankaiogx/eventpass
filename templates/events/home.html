@@ -70,6 +70,9 @@
                             <p class="card-text text-muted">{{ event.venue.city }}</p>
                             {% if event.starting_price is not None %}
                                 <p class="price">From £{{ event.starting_price }}</p>
+                                <p class="status available">Tickets available</p>
+                            {% else %}
+                                <p class="status sold-out">Sold out</p>
                             {% endif %}
                             <a class="button secondary mt-auto" href="{% url 'event_detail' event.id %}">View Details</a>
                         </div>
