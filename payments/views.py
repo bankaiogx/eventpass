@@ -31,7 +31,7 @@ def create_checkout_session(request, order_id):
 
     stripe.api_key = settings.STRIPE_SECRET_KEY
     success_url = request.build_absolute_uri(reverse("payment_success", args=[order.id]))
-    cancel_url = request.build_absolute_uri(reverse("booking_confirmation", args=[order.id]))
+    cancel_url = request.build_absolute_uri(reverse("payment_cancel", args=[order.id]))
 
     checkout_session = stripe.checkout.Session.create(
         payment_method_types=["card"],
@@ -71,6 +71,16 @@ def payment_success(request, order_id):
     order.save()
 
     return render(request, "payments/payment_success.html", {"order": order})
+
+
+@login_required
+def payment_cancel(request, order_id):
+    order = get_object_or_404(
+        Order.objects.select_related("event"),
+        id=order_id,
+        user=request.user,
+    )
+    return render(request, "payments/payment_cancel.html", {"order": order})
 
 
 @csrf_exempt
