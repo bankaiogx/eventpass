@@ -459,8 +459,20 @@ select {
     background: var(--white);
     border: 1px solid var(--border);
     border-radius: 8px;
+    box-shadow: 0 10px 24px rgba(16, 24, 40, 0.06);
     overflow: hidden;
-    transition: transform 0.2s ease;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.event-card:hover {
+    box-shadow: 0 18px 36px rgba(16, 24, 40, 0.14);
+    transform: translateY(-6px);
+}
+
+.event-card-image {
+    background: var(--navy);
+    overflow: hidden;
+    position: relative;
 }
 
 .event-card img,
@@ -468,16 +480,46 @@ select {
     aspect-ratio: 16 / 9;
     display: block;
     object-fit: cover;
+    transition: transform 0.25s ease;
     width: 100%;
 }
 
-.event-card-content {
-    padding: 18px;
+.event-card:hover img {
+    transform: scale(1.05);
+}
+
+.event-date-badge {
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 8px;
+    color: var(--navy);
+    font-size: 0.82rem;
+    font-weight: 800;
+    left: 14px;
+    padding: 7px 10px;
+    position: absolute;
+    top: 14px;
 }
 
 .event-card h2,
 .ticket-panel h2 {
     margin: 10px 0;
+}
+
+.event-card-meta {
+    align-items: center;
+    color: var(--muted);
+    display: flex;
+    gap: 7px;
+}
+
+.event-card-footer {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-top: 10px;
 }
 
 .badge {
@@ -492,6 +534,7 @@ select {
 
 .price {
     font-weight: 700;
+    margin: 0;
 }
 
 .status {
