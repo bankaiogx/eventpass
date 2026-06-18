@@ -236,6 +236,42 @@ a {
     padding: 8px 13px;
 }
 
+.how-it-works {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.how-step {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.how-step-icon {
+    align-items: center;
+    background: #FFF1F3;
+    border-radius: 999px;
+    color: var(--coral);
+    display: inline-flex;
+    font-size: 1.35rem;
+    height: 44px;
+    justify-content: center;
+    margin-bottom: 14px;
+    width: 44px;
+}
+
+.how-step h3 {
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+}
+
+.how-step p {
+    color: var(--muted);
+    margin: 0;
+}
+
 .page-hero h1,
 .detail-main h1 {
     font-size: clamp(2rem, 5vw, 3.4rem);
@@ -676,6 +712,10 @@ select {
 }
 
 @media (max-width: 720px) {
+    .how-it-works {
+        grid-template-columns: 1fr;
+    }
+
     .navbar {
         min-height: 78px;
         padding-left: 20px;
