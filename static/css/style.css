@@ -318,6 +318,32 @@ a {
     padding: 20px;
 }
 
+.empty-state {
+    text-align: center;
+}
+
+.empty-state.compact {
+    margin-bottom: 16px;
+}
+
+.empty-state-icon {
+    align-items: center;
+    background: #FFF1F3;
+    border-radius: 999px;
+    color: var(--coral);
+    display: inline-flex;
+    font-size: 1.4rem;
+    height: 48px;
+    justify-content: center;
+    margin-bottom: 12px;
+    width: 48px;
+}
+
+.empty-state h2 {
+    font-size: 1.35rem;
+    margin-bottom: 8px;
+}
+
 .auth-card {
     background: var(--white);
     border: 1px solid var(--border);

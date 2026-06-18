@@ -103,8 +103,12 @@
     </section>
 {% else %}
     <section class="empty-state">
+        <div class="empty-state-icon">
+            <i class="bi bi-search" aria-hidden="true"></i>
+        </div>
         <h2>No events found</h2>
-        <p>Try changing your search or filters.</p>
+        <p>Try changing your search or filters, or clear them to see all events.</p>
+        <a class="btn btn-danger" href="{% url 'event_list' %}">Clear Filters</a>
     </section>
 {% endif %}
 {% endblock %}

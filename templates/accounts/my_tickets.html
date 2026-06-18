@@ -46,8 +46,17 @@
             {% endfor %}
         </div>
     {% else %}
-        <p class="text-muted">You have not booked any tickets yet.</p>
+        <div class="empty-state compact">
+            <div class="empty-state-icon">
+                <i class="bi bi-ticket-perforated" aria-hidden="true"></i>
+            </div>
+            <h2>No tickets yet</h2>
+            <p>When you book an event, your ticket details will appear here.</p>
+            <a class="btn btn-danger w-100" href="{% url 'event_list' %}">Browse Events</a>
+        </div>
     {% endif %}
-    <a class="btn btn-danger w-100" href="{% url 'event_list' %}">Browse Events</a>
+    {% if orders %}
+        <a class="btn btn-danger w-100" href="{% url 'event_list' %}">Browse Events</a>
+    {% endif %}
 </section>
 {% endblock %}

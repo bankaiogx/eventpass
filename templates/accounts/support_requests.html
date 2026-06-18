@@ -55,7 +55,13 @@
             {% endfor %}
         </div>
     {% else %}
-        <p class="text-muted">You have not created any support tickets yet.</p>
+        <div class="empty-state compact">
+            <div class="empty-state-icon">
+                <i class="bi bi-chat-left-text" aria-hidden="true"></i>
+            </div>
+            <h2>No support tickets</h2>
+            <p>If you need help with a booking, you can create a support ticket.</p>
+        </div>
     {% endif %}
 </section>
 {% endblock %}
