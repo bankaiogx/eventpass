@@ -43,24 +43,38 @@ def send_order_confirmation(order):
     if order.email_confirmation_sent or not order.user.email:
         return
 
+    event = order.event
+    venue = event.venue
+    customer_name = order.user.first_name or order.user.username
+    event_date = event.start_date.strftime("%d %B %Y")
+    start_time = event.start_time.strftime("%H:%M")
+    end_time = event.end_time.strftime("%H:%M") if event.end_time else ""
+
     ticket_lines = [
-        f"- {item.quantity} x {item.ticket_type.name}"
+        f"- {item.quantity} x {item.ticket_type.name} at £{item.price_at_purchase} each"
         for item in order.items.select_related("ticket_type")
     ]
 
     message = "\n".join(
         [
-            f"Hi {order.user.username},",
+            f"Hi {customer_name},",
             "",
-            f"Your booking for {order.event.title} is confirmed.",
+            "Thanks for booking with EventPass. Your order is confirmed.",
             "",
-            f"Order number: {order.id}",
+            "Booking details",
+            f"Order number: #{order.id}",
+            f"Event: {event.title}",
+            f"Date: {event_date}",
+            f"Time: {start_time}{f' - {end_time}' if end_time else ''}",
+            f"Venue: {venue.name}, {venue.city}",
+            f"Address: {venue.address}, {venue.postcode}",
             f"Total paid: £{order.total_amount}",
             "",
-            "Tickets:",
+            "Tickets",
             *ticket_lines,
             "",
             "Your tickets will be emailed 72 hours before the event start date.",
+            "You can also view this booking from My Tickets in your EventPass account.",
             "",
             "Thanks,",
             "EventPass",
@@ -68,7 +82,7 @@ def send_order_confirmation(order):
     )
 
     sent_count = send_mail(
-        subject=f"EventPass booking confirmation - Order #{order.id}",
+        subject=f"Your EventPass booking for {event.title}",
         message=message,
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[order.user.email],
