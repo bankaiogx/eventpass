@@ -13,7 +13,6 @@
     <div class="payment-summary">
         <p class="mb-1">Order #{{ order.id }}</p>
         <p class="mb-1">Total paid: £{{ order.total_amount }}</p>
-        <p class="mb-0">Status: <span class="badge text-bg-success">{{ order.get_payment_status_display }}</span></p>
     </div>
 
     <a class="btn btn-danger w-100 mb-2" href="{% url 'booking_confirmation' order.id %}">View Order</a>

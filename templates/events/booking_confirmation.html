@@ -20,16 +20,6 @@
 
     <p>Total: £{{ order.total_amount }}</p>
     <p class="text-muted">Your tickets will be emailed 72 hours before the event start date.</p>
-    <p>
-        Status:
-        {% if order.payment_status == "paid" %}
-            <span class="badge text-bg-success">{{ order.get_payment_status_display }}</span>
-        {% elif order.payment_status == "pending" %}
-            <span class="badge text-bg-warning">{{ order.get_payment_status_display }}</span>
-        {% else %}
-            <span class="badge text-bg-secondary">{{ order.get_payment_status_display }}</span>
-        {% endif %}
-    </p>
     {% if order.refund_status != "not_requested" %}
         <p>
             Refund:
