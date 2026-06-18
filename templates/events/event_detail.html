@@ -1,15 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
+{% load event_images %}
 
 {% block title %}{{ event.title }} | EventPass{% endblock %}
 
 {% block content %}
 <article class="event-detail">
-    {% if event.image %}
-        <img class="detail-image" src="{{ event.image.url }}" alt="{{ event.title }} event image">
-    {% else %}
-        <img class="detail-image" src="{% static 'images/event_placeholder.png' %}" alt="">
-    {% endif %}
+    <img class="detail-image" src="{% static event|event_static_image %}" alt="{{ event.title }} event image">
 
     <div class="row g-4">
         <section class="col-lg-8">

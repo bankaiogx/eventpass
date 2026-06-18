@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load event_images %}
 
 {% block title %}Events | EventPass{% endblock %}
 
@@ -67,11 +68,7 @@
             <div class="col-md-6 col-lg-4">
                 <article class="card event-card h-100">
                     <div class="event-card-image">
-                        {% if event.image %}
-                            <img class="card-img-top" src="{{ event.image.url }}" alt="{{ event.title }} event image">
-                        {% else %}
-                            <img class="card-img-top" src="{% static 'images/event_placeholder.png' %}" alt="">
-                        {% endif %}
+                        <img class="card-img-top" src="{% static event|event_static_image %}" alt="{{ event.title }} event image">
                         <span class="event-date-badge">
                             {{ event.start_date|date:"d M" }}
                         </span>
