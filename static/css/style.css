@@ -35,10 +35,13 @@ a {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
-    max-width: 1120px;
     min-height: 86px;
-    padding: 14px 0;
+    padding: 14px 32px;
+}
+
+.nav-container {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .brand {
@@ -65,7 +68,15 @@ a {
     gap: 24px;
 }
 
+.navbar-nav .nav-item {
+    align-items: center;
+    display: flex;
+}
+
 .navbar .nav-link {
+    align-items: center;
+    display: flex;
+    min-height: 40px;
     padding-left: 0;
     padding-right: 0;
 }
@@ -79,12 +90,14 @@ a {
     align-items: center;
     display: flex;
     height: 100%;
+    margin: 0;
 }
 
 .logout-button {
     background: transparent;
     border: 0;
     font: inherit;
+    line-height: inherit;
     padding: var(--bs-nav-link-padding-y) 0;
 }
 
@@ -579,6 +592,8 @@ select {
 @media (max-width: 720px) {
     .navbar {
         min-height: 78px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .navbar-nav {
