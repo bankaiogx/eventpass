@@ -339,6 +339,11 @@ a {
     margin-bottom: 18px;
 }
 
+.payment-success-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0 0 12px;
+}
+
 .payment-icon {
     align-items: center;
     border-radius: 999px;
