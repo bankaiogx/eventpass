@@ -6,7 +6,7 @@
 {% block content %}
 <article class="event-detail">
     {% if event.image %}
-        <img class="detail-image" src="{{ event.image.url }}" alt="{{ event.title }}">
+        <img class="detail-image" src="{{ event.image.url }}" alt="{{ event.title }} event image">
     {% else %}
         <img class="detail-image" src="{% static 'images/event_placeholder.png' %}" alt="">
     {% endif %}
@@ -33,12 +33,14 @@
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
                     title="Map for {{ event.venue.name }}"
+                    aria-label="Map showing {{ event.venue.name }}"
                 ></iframe>
                 <a
                     class="btn btn-dark mb-3"
                     href="https://www.google.com/maps/search/?api=1&query={{ event.venue.name|urlencode }}%20{{ event.venue.address|urlencode }}%20{{ event.venue.city|urlencode }}%20{{ event.venue.postcode|urlencode }}"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Open {{ event.venue.name }} in Google Maps"
                 >
                     View on Google Maps
                 </a>

@@ -62,7 +62,7 @@
                 <div class="col-md-6 col-lg-4">
                     <article class="card event-card h-100">
                         {% if event.image %}
-                            <img class="card-img-top" src="{{ event.image.url }}" alt="{{ event.title }}">
+                            <img class="card-img-top" src="{{ event.image.url }}" alt="{{ event.title }} event image">
                         {% else %}
                             <img class="card-img-top" src="{% static 'images/event_placeholder.png' %}" alt="">
                         {% endif %}
