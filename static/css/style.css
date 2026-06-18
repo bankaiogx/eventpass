@@ -146,6 +146,7 @@ a {
     content: "";
     inset: 0;
     position: absolute;
+    z-index: 0;
 }
 
 .carousel-panel {
@@ -156,7 +157,7 @@ a {
     min-height: 430px;
     padding: 64px 88px;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .carousel-panel h1 {
@@ -172,9 +173,17 @@ a {
     max-width: 600px;
 }
 
-.carousel-panel .button {
+.hero-button {
     margin-top: 12px;
     min-width: 160px;
+    position: relative;
+    z-index: 3;
+}
+
+.home-carousel .carousel-control-prev,
+.home-carousel .carousel-control-next {
+    width: 8%;
+    z-index: 2;
 }
 
 .home-section {
