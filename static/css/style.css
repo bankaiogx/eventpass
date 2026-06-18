@@ -532,6 +532,11 @@ select {
     padding: 5px 10px;
 }
 
+.category-badge {
+    align-self: flex-end;
+    margin-bottom: 4px;
+}
+
 .price {
     font-weight: 700;
     margin: 0;
