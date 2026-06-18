@@ -7,6 +7,19 @@ from django import forms
 from .models import Profile, SupportRequest
 
 
+def validate_date_of_birth(date_of_birth):
+    today = date.today()
+    minimum_birth_date = date(today.year - 16, today.month, today.day)
+
+    if date_of_birth > today:
+        raise forms.ValidationError("Date of birth cannot be in the future.")
+
+    if date_of_birth > minimum_birth_date:
+        raise forms.ValidationError("You must be at least 16 years old to create an account.")
+
+    return date_of_birth
+
+
 class RegisterForm(UserCreationForm):
     first_name = forms.CharField(required=True)
     last_name = forms.CharField(required=True)
@@ -32,11 +45,7 @@ class RegisterForm(UserCreationForm):
 
     def clean_date_of_birth(self):
         date_of_birth = self.cleaned_data["date_of_birth"]
-
-        if date_of_birth > date.today():
-            raise forms.ValidationError("Date of birth cannot be in the future.")
-
-        return date_of_birth
+        return validate_date_of_birth(date_of_birth)
 
     class Meta:
         model = User
@@ -86,11 +95,7 @@ class ProfileForm(forms.ModelForm):
 
     def clean_date_of_birth(self):
         date_of_birth = self.cleaned_data["date_of_birth"]
-
-        if date_of_birth > date.today():
-            raise forms.ValidationError("Date of birth cannot be in the future.")
-
-        return date_of_birth
+        return validate_date_of_birth(date_of_birth)
 
     def save(self, commit=True):
         user = super().save(commit=commit)
