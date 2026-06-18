@@ -68,10 +68,17 @@ a {
     font-weight: 700;
 }
 
+.logout-form {
+    align-items: center;
+    display: flex;
+    height: 100%;
+}
+
 .logout-button {
     background: transparent;
     border: 0;
-    padding: 0;
+    font: inherit;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
 }
 
 .nav-links {
