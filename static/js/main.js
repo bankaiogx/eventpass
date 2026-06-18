@@ -2,6 +2,8 @@ const ticketInputs = document.querySelectorAll(".ticket-quantity");
 const bookingTotal = document.getElementById("booking-total");
 const selectedTicketCount = document.getElementById("selected-ticket-count");
 const checkoutButton = document.getElementById("checkout-button");
+const checkoutForm = document.getElementById("checkout-form");
+let checkoutLoading = false;
 
 function updateBookingTotal() {
     let total = 0;
@@ -26,7 +28,7 @@ function updateBookingTotal() {
         }
     }
 
-    if (checkoutButton) {
+    if (checkoutButton && !checkoutLoading) {
         checkoutButton.disabled = ticketCount === 0;
     }
 }
@@ -38,6 +40,14 @@ ticketInputs.forEach(function (input) {
 });
 
 updateBookingTotal();
+
+if (checkoutForm && checkoutButton) {
+    checkoutForm.addEventListener("submit", function () {
+        checkoutLoading = true;
+        checkoutButton.disabled = true;
+        checkoutButton.textContent = checkoutButton.dataset.loadingText || "Redirecting...";
+    });
+}
 
 const quantityButtons = document.querySelectorAll(".quantity-button");
 

@@ -10,7 +10,7 @@
     <p class="text-muted">{{ event.venue.name }}, {{ event.venue.city }}</p>
 
     {% if ticket_types %}
-        <form method="post">
+        <form method="post" id="checkout-form">
             {% csrf_token %}
             <div class="list-group mb-3">
                 {% for ticket in ticket_types %}
@@ -35,7 +35,7 @@
                 Estimated total: £<span id="booking-total">0.00</span>
                 <span class="selected-count" id="selected-ticket-count">No tickets selected</span>
             </div>
-            <button class="btn btn-danger w-100 mb-2" id="checkout-button" type="submit">Continue to Payment</button>
+            <button class="btn btn-danger w-100 mb-2" id="checkout-button" type="submit" data-loading-text="Redirecting...">Continue to Payment</button>
         </form>
     {% else %}
         <p class="text-muted">No tickets are available for this event.</p>
