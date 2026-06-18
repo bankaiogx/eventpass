@@ -77,7 +77,14 @@
                         </span>
                     </div>
                     <div class="card-body d-flex flex-column">
-                        <span class="badge category-badge">{{ event.category.name }}</span>
+                        <div class="event-card-topline">
+                            <span class="badge">{{ event.category.name }}</span>
+                            {% if event.available_ticket_count %}
+                                <span class="status available">Tickets available</span>
+                            {% else %}
+                                <span class="status sold-out">Sold out</span>
+                            {% endif %}
+                        </div>
                         <h2 class="card-title h5 mt-3">{{ event.title }}</h2>
                         <p class="event-card-meta mb-1"><i class="bi bi-clock" aria-hidden="true"></i>{{ event.start_time|time:"g:i A" }}</p>
                         <p class="event-card-meta"><i class="bi bi-geo-alt" aria-hidden="true"></i>{{ event.venue.city }}</p>
@@ -85,9 +92,6 @@
                         <div class="event-card-footer mt-auto">
                             {% if event.available_ticket_count %}
                                 <p class="price">From £{{ event.starting_price }}</p>
-                                <span class="status available">Tickets available</span>
-                            {% else %}
-                                <span class="status sold-out">Sold out</span>
                             {% endif %}
                         </div>
 
