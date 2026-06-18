@@ -26,6 +26,17 @@ a {
     text-decoration: none;
 }
 
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .site-header {
     background: var(--navy);
     color: var(--white);
@@ -650,6 +661,14 @@ select {
 .social-links a {
     color: var(--navy);
     font-size: 1.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 @media (max-width: 720px) {

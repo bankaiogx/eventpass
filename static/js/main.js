@@ -66,6 +66,30 @@ if (document.querySelector("dotlottie-player")) {
     document.body.appendChild(script);
 }
 
+const revealItems = document.querySelectorAll(".home-section, .event-card, .filter-panel, .auth-card, .detail-main, .ticket-panel");
+
+if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+    });
+
+    revealItems.forEach(function (item) {
+        item.classList.add("scroll-reveal");
+        revealObserver.observe(item);
+    });
+} else {
+    revealItems.forEach(function (item) {
+        item.classList.add("is-visible");
+    });
+}
+
 const navLinks = document.querySelectorAll("[data-nav]");
 const currentPath = window.location.pathname;
 
