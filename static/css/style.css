@@ -26,6 +26,23 @@ a {
     text-decoration: none;
 }
 
+.btn,
+.button {
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover,
+.button:hover {
+    box-shadow: 0 10px 22px rgba(16, 24, 40, 0.14);
+    transform: translateY(-2px);
+}
+
+.btn:active,
+.button:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
 .scroll-reveal {
     opacity: 0;
     transform: translateY(24px);
@@ -713,6 +730,17 @@ select {
         opacity: 1;
         transform: none;
         transition: none;
+    }
+
+    .btn,
+    .button {
+        transition: none;
+    }
+
+    .btn:hover,
+    .button:hover {
+        box-shadow: none;
+        transform: none;
     }
 }
 
