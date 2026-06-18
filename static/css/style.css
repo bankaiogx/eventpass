@@ -37,7 +37,8 @@ a {
     justify-content: space-between;
     margin: 0 auto;
     max-width: 1120px;
-    padding: 18px 20px;
+    min-height: 86px;
+    padding: 14px 0;
 }
 
 .brand {
@@ -60,7 +61,13 @@ a {
 }
 
 .navbar-nav {
-    gap: 18px;
+    align-items: center;
+    gap: 24px;
+}
+
+.navbar .nav-link {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .navbar .nav-link.active {
@@ -78,7 +85,7 @@ a {
     background: transparent;
     border: 0;
     font: inherit;
-    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    padding: var(--bs-nav-link-padding-y) 0;
 }
 
 .nav-links {
@@ -570,6 +577,16 @@ select {
 }
 
 @media (max-width: 720px) {
+    .navbar {
+        min-height: 78px;
+    }
+
+    .navbar-nav {
+        align-items: flex-start;
+        gap: 8px;
+        padding-top: 18px;
+    }
+
     .home-carousel .carousel-item::before {
         background: rgba(16, 24, 40, 0.78);
     }
