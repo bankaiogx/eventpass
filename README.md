@@ -132,6 +132,12 @@ The main user journey planned was:
 7. Booking appears in My Tickets.
 8. User can request support or cancellation if needed.
 
+#### Project Timeline
+
+<img src="documentation/planning/project_timeline.png" alt="Project timeline showing planned tasks across three weeks" width="700">
+
+This timeline was used to plan the main stages of the project, including research, wireframes, Django setup, authentication, CRUD features, booking, support and documentation.
+
 ### Wireframes
 
 Simple wireframes were used to plan the main page structure before building the final styling. These were kept basic so the focus stayed on layout, navigation and user flow rather than colours or images at the start.
