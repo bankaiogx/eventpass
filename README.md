@@ -683,3 +683,170 @@ Alongside manual testing, I also checked that the Django project loaded correctl
 | Uploaded images did not show after deployment | Heroku does not keep uploaded media files permanently | Added S3 media storage so uploaded event images can load on the deployed site |
 | Images were too large on the homepage | Event and carousel images were large PNG files, which affected Lighthouse performance | Added smaller JPEG versions and updated the site to use them |
 | Lighthouse showed a missing meta description | The base template did not include a page description | Added a meta description so pages have basic SEO information |
+
+## Version Control
+
+Version control was used throughout the development of this project to manage changes, track progress and keep the project organised. Git and GitHub were used together, with VS Code as the main development environment.
+
+I followed a simple workflow by working on a feature or fixing a bug, testing it, and then committing the change with a clear message. This made it easier to keep track of what had been added and also helped when debugging, because I could look back at previous commits to understand when a change was made.
+
+Commits were made regularly throughout the project and were usually based around individual features or fixes. For example, commits were used for adding the event models, customising admin, building event pages, adding authentication, adding the booking flow, connecting Stripe, fixing ticket stock, adding S3 media storage and updating the README.
+
+GitHub was also important for deployment because the Heroku app was connected to the GitHub repository. This meant the deployed project could be updated from the main branch after changes were pushed.
+
+Overall, version control helped keep the development process more organised and made it easier to build the project in stages rather than trying to add everything at once.
+
+## Deployment
+
+This project was deployed using Heroku because it is a Django application and needs a backend server and database. GitHub was still used first for version control and to store the project repository.
+
+### GitHub Setup
+
+The project was first set up through GitHub and then linked to my local project through Terminal.
+
+The following steps were taken:
+
+1. I created the project repository on GitHub.
+2. I used the GitHub repository options to set up/copy the repository link.
+3. I opened Terminal on my Mac.
+4. I navigated to the folder where the project was stored.
+5. I linked the local project folder to the GitHub repository using the remote repository URL.
+6. I added and committed changes throughout development.
+7. I pushed the commits to the main GitHub repository.
+
+The GitHub repository was then used as the source for deployment to Heroku.
+
+### Heroku Deployment
+
+The live site was deployed using Heroku:
+
+https://eventpass-project-arbaz-26c642d141a9.herokuapp.com/
+
+The following steps were taken:
+
+1. I created a new Heroku app called `eventpass-project-arbaz`.
+2. I connected the Heroku app to the GitHub repository.
+3. I added the required Heroku config vars for the project.
+4. I added Heroku Postgres so the deployed project had a production database.
+5. I made sure the project had the deployment files needed for Heroku, including `Procfile`, `.python-version`, `requirements.txt` and static file settings.
+6. I deployed the project from the main branch.
+7. I ran the database migrations on Heroku so the production database tables were created.
+8. I created a superuser for the deployed admin panel.
+9. I added sample event data through the deployed admin panel.
+10. I tested the live site after deployment to check the pages, styling, database, Stripe checkout and uploaded images worked correctly.
+
+During deployment, I also had to fix issues with static files, uploaded media, Heroku Postgres and config variable settings. These are listed in the Bugs and Fixes section.
+
+### S3 Media Storage
+
+AWS S3 was added because Heroku does not keep uploaded media files permanently. This means images uploaded through Django admin need to be stored somewhere outside the Heroku app.
+
+The following steps were taken:
+
+1. I created an S3 bucket for EventPass media files.
+2. I set up the bucket region.
+3. I added AWS access details to Heroku config vars.
+4. I installed and configured Django Storages/Boto3.
+5. I updated the Django settings so uploaded media uses S3 when the AWS config vars are available.
+6. I tested uploading an event image through admin.
+7. I checked the public event page to confirm the uploaded image displayed correctly.
+
+### Environment Variables
+
+The project uses environment variables so private settings are not placed directly in the public GitHub repository.
+
+The main environment settings used were:
+
+- Django secret key and debug setting
+- allowed Heroku host/domain settings
+- Heroku Postgres database URL
+- Stripe test payment keys
+- AWS S3 media storage settings
+- email settings for booking messages
+
+`DATABASE_URL` is provided by Heroku Postgres. The Stripe settings were added so test checkout could work on the deployed site. The AWS settings were added so uploaded event images could be stored in S3.
+
+## Future Improvements
+
+- **Add emailed tickets with QR codes**  
+At the moment, the site tells users that tickets will be emailed before the event. In the future, I would improve this by generating proper ticket emails with QR codes or PDF tickets.
+
+- **Improve the Stripe webhook setup**  
+The project uses Stripe test checkout for payments. A future version could use a stronger production webhook setup so payment updates are handled even if the user closes the browser before returning to the site.
+
+- **Add more advanced event filters**  
+The current filters cover search, category, city and price. In the future, I could add date filtering, nearby event filtering or sorting by soonest event.
+
+- **Improve order history**  
+The My Tickets page shows paid bookings, but a future version could add a more detailed order history page with receipts, refund notes and downloadable ticket information.
+
+- **Add better admin reporting**  
+The admin panel can manage events and orders, but a future improvement could include a dashboard for ticket sales, revenue and sold out events.
+
+- **Improve email notifications**  
+The project includes email settings, but a future version could send more polished booking confirmations, cancellation updates and refund updates.
+
+## References
+
+### Code and Documentation
+
+- Django documentation  
+https://docs.djangoproject.com/
+
+- Django authentication documentation  
+https://docs.djangoproject.com/en/stable/topics/auth/
+
+- Bootstrap documentation  
+https://getbootstrap.com/
+
+Bootstrap was used for the responsive navbar, hamburger menu, containers, spacing utilities, buttons, forms, carousel and basic layout helpers.
+
+- Bootstrap Icons  
+https://icons.getbootstrap.com/
+
+Bootstrap Icons were used for the footer social media icons and some interface icons.
+
+- Stripe documentation  
+https://docs.stripe.com/
+
+Stripe was used for the test checkout payment flow.
+
+- Heroku Django deployment documentation  
+https://devcenter.heroku.com/articles/deploying-python
+
+- Heroku Postgres documentation  
+https://devcenter.heroku.com/articles/heroku-postgresql
+
+- AWS S3 documentation  
+https://docs.aws.amazon.com/s3/
+
+- Django Storages documentation  
+https://django-storages.readthedocs.io/
+
+- LottieFiles documentation  
+https://lottiefiles.com/
+
+Lottie was used for the payment success animation.
+
+- W3C HTML Validator  
+https://validator.w3.org/
+
+- W3C CSS Validator  
+https://jigsaw.w3.org/css-validator/
+
+- Google PageSpeed Insights  
+https://pagespeed.web.dev/
+
+### Media
+
+- Event and carousel images were generated and then resized/optimised for the website.
+
+- The EventPass logo and colour palette were created for this project and used to keep the branding consistent.
+
+- The payment success animation was sourced from LottieFiles and used on the payment success page.
+
+### Design Inspiration
+
+- The design was influenced by modern ticket booking and local event websites.
+
+- The visual style uses dark navy, coral buttons, purple highlights, image-led event cards and simple reusable layouts.
