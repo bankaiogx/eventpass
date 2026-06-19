@@ -541,6 +541,7 @@ Custom CSS media queries were used alongside Bootstrap to adjust spacing, image 
 - SQLite
 - PostgreSQL / Heroku Postgres
 - Stripe
+- Google Maps
 - AWS S3
 - Django Storages
 - Boto3
@@ -913,6 +914,11 @@ Bootstrap Icons were used for the footer social media icons and some interface i
 https://docs.stripe.com/
 
 Stripe was used for the test checkout payment flow.
+
+- Google Maps  
+https://www.google.com/maps
+
+Google Maps was used for venue map links and location information on event detail pages.
 
 - Heroku Django deployment documentation  
 https://devcenter.heroku.com/articles/deploying-python
