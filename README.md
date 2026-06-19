@@ -361,6 +361,7 @@ Ticket stock is stored in the database as well. Ticket quantities are checked be
 - Ticket quantity validation
 - Stripe test checkout
 - Payment success page
+- Booking confirmation emails
 - Payment cancelled page
 - Booking confirmation page
 - My Tickets page
@@ -379,15 +380,6 @@ Ticket stock is stored in the database as well. Ticket quantities are checked be
 - Custom 404 and 500 pages
 - Responsive navbar and footer
 - Basic JavaScript animations and booking updates
-
-### Future Features
-
-- Email ticket delivery with ticket PDFs or QR codes.
-- More detailed order history for users.
-- Better admin reporting for ticket sales.
-- More event categories and location-based browsing.
-- Full production Stripe webhook setup.
-- Customer email receipts from the payment provider.
 
 ## Page Breakdown
 
@@ -427,7 +419,7 @@ The booking page lets users choose ticket quantities before going to Stripe chec
 
 ### Payment Pages
 
-The payment success page confirms that the payment has been completed and shows the order summary. The payment cancelled page gives users a clear message if checkout is cancelled and lets them return to events.
+The payment success page confirms that the payment has been completed and shows the order summary. A booking confirmation email is also sent to the user's account email address after a successful payment. The payment cancelled page gives users a clear message if checkout is cancelled and lets them return to events.
 
 ### Booking Confirmation Page
 
