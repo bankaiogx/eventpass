@@ -441,6 +441,73 @@ The admin area is used by the site owner to manage the website content and booki
 
 Custom 404 and 500 pages are included so users get a styled page if something goes wrong or a page cannot be found.
 
+## Accessibility Features
+
+Accessibility was considered throughout the project so the site is easier to use and understand. I kept the accessibility work simple and relevant rather than adding unnecessary ARIA everywhere.
+
+- **Semantic HTML structure**  
+Pages use normal headings, links, buttons, forms and sections where possible, so the structure is easier to follow.
+
+- **Clear page headings**  
+Each main page has a clear heading so users can quickly understand what page they are on, such as Events, My Tickets, Profile and Support Tickets.
+
+- **Image alt text**  
+Important images, such as the logo, event card images and event detail images, include alt text. The carousel images are used as background images because the slide text already explains the content.
+
+- **Icon-only links**  
+Icon-only links, such as footer social icons, include accessible labels so the purpose of the link is still clear.
+
+- **Clear button text**  
+Most buttons use visible text such as Browse Events, View Details, Book Tickets, Pay with Stripe, View My Tickets and Create Support Ticket, so users can understand the action without guessing.
+
+- **External social links**  
+Footer social links open in a new tab and include `rel="noopener noreferrer"` for safer external linking.
+
+- **Form labels**  
+Forms include labels for fields such as username, email, date of birth, password and ticket quantity. This makes the forms easier to understand and also helps with accessibility.
+
+- **Colour contrast**  
+The project uses a dark navy header with light text and coral action buttons. This was chosen to keep the design readable while still matching the event/ticket style.
+
+- **Keyboard use**  
+The main links, buttons, form fields and dropdown menu can be reached using the keyboard. This helps users who do not use a mouse.
+
+- **Responsive layout**  
+The layout adapts for smaller screens, and the navbar becomes a hamburger menu on mobile so links do not become crowded.
+
+## Responsive Design
+
+The website was built to work across desktop, tablet and mobile screen sizes. This was important because users may browse events or book tickets while using their phone.
+
+Bootstrap was used for some of the layout and responsive behaviour, especially the navbar. On smaller screens, the desktop navigation changes into a hamburger menu so the links do not overcrowd the top of the page.
+
+The event cards were also designed to adapt to smaller screens. On desktop, the cards sit in a grid with event images and key details. On mobile, the cards stack naturally so the title, date, city, price and buttons remain readable.
+
+Forms were also considered for smaller screens. Inputs, buttons and ticket quantity controls use larger spacing so they are easier to tap on mobile. This is especially useful on the register, profile, support and booking pages.
+
+The booking and payment pages use centred cards on larger screens, but still fit smaller mobile screens without horizontal scrolling. This keeps the checkout journey simple and readable.
+
+Custom CSS media queries were used alongside Bootstrap to adjust spacing, image sizing, navbar layout, carousel height and card behaviour. This helped keep the site consistent without needing to create separate pages for mobile and desktop.
+
+## Technologies Used
+
+- HTML5
+- CSS3
+- JavaScript
+- Bootstrap
+- Bootstrap Icons
+- Python
+- Django
+- SQLite
+- PostgreSQL / Heroku Postgres
+- Stripe
+- AWS S3
+- Django Storages
+- Boto3
+- LottieFiles / DotLottie player
+- Git and GitHub
+- Heroku
+
 ## Testing
 
 ### Manual Testing
