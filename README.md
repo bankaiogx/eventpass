@@ -413,6 +413,8 @@ The login page lets existing users access their account. Protected pages such as
 
 The profile page lets logged-in users update their name, email address and date of birth. It also links users to the password change page so account details are kept separate from password updates.
 
+![Profile page](documentation/testing/profile.png)
+
 ### Booking Page
 
 The booking page lets users choose ticket quantities before going to Stripe checkout. JavaScript updates the total price on the page, and the form checks that users cannot continue with zero tickets or more tickets than are available.
@@ -429,13 +431,19 @@ The booking confirmation page shows the confirmed order details, including the e
 
 The My Tickets page shows the user's paid bookings. It also shows cancellation or refund information if an order has a request linked to it.
 
+![My Tickets page](documentation/testing/my_tickets.png)
+
 ### Support Pages
 
 The support pages let logged-in users create, edit and delete support tickets. Users can also request cancellation for an order, which is then managed separately by the site owner in admin.
 
+![Support page](documentation/testing/support.png)
+
 ### Admin Area
 
 The admin area is used by the site owner to manage the website content and booking data. Categories, venues, events, ticket types, orders, refunds, support tickets and cancellation requests are all managed through Django admin.
+
+![Admin area](documentation/testing/admin.png)
 
 ### Error Pages
 
@@ -616,6 +624,30 @@ The mobile homepage was checked with the hamburger menu closed. The logo, carous
 ![Mobile homepage with open menu](documentation/testing/mobile_home_open.jpg)
 
 The mobile navigation was also checked with the hamburger menu open. The menu links displayed clearly and remained easy to tap.
+
+#### Mobile Events Page
+
+![Mobile events page](documentation/testing/mobile_events.jpg)
+
+The events page was checked on mobile. The filter controls stacked correctly and the event cards stayed readable on a smaller screen.
+
+#### Mobile Event Detail Page
+
+![Mobile event detail page](documentation/testing/mobile_event_detail.jpg)
+
+The event detail page was checked on mobile. The event information, venue section, map and action buttons stayed readable.
+
+#### Mobile Booking Page
+
+![Mobile booking page](documentation/testing/mobile_booking.jpg)
+
+The booking page was checked on mobile. The ticket quantity controls, estimated total and payment button remained easy to use.
+
+#### Mobile Payment Success Page
+
+![Mobile payment success page](documentation/testing/mobile_payment_success.jpg)
+
+The payment success page was checked on mobile after completing a Stripe test payment. The confirmation card, animation and buttons displayed correctly.
 
 ### Accessibility Testing
 
