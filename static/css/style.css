@@ -417,7 +417,10 @@ a {
 }
 
 .payment-animation-frame {
+    align-items: center;
+    display: flex;
     height: 270px;
+    justify-content: center;
     margin: -20px auto 4px;
     max-width: 100%;
     overflow: hidden;
@@ -426,7 +429,7 @@ a {
 .payment-animation {
     display: block;
     height: 560px;
-    margin: -145px auto 0;
+    margin: -145px 0 0;
     max-width: none;
     width: 560px;
 }

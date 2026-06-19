@@ -688,12 +688,14 @@ The deployed homepage scored 75 for Performance and 100 for Accessibility, Best 
 | Stripe success page caused an error | The success view was reading the Stripe session in the wrong way | Updated the payment success logic so the order can be found correctly after checkout |
 | Payment success page spacing looked wrong | The success animation and text had too much empty space around them | Adjusted the layout so the confirmation screen is neater |
 | Payment success animation looked too small | The Lottie animation did not stand out enough on the confirmation page | Increased the animation size and adjusted the surrounding spacing |
+| Payment success animation was not centred properly on mobile | The animation was positioned with margin values instead of being centred inside its container | Updated the animation frame so it centres the animation properly |
 | Booking flow created unpaid orders | Orders were being created before payment was complete | Changed the flow so orders are created after successful Stripe payment |
 | Ticket quantity could be typed above stock | The quantity field had a max value, but typed numbers could still go higher before submitting | Added JavaScript to keep the quantity between zero and the available stock |
 | Ticket quantity arrows showed inside the number input | Browser default number controls made the custom quantity controls look messy | Hid the default number input arrows and kept the custom plus/minus buttons |
 | Sold out badge was too wide | The badge styling stretched across too much of the event card | Updated the badge styling so it sits neatly on the card |
 | Paid status pill was not needed on normal tickets | All valid tickets are paid, so the pill did not add useful information | Removed the paid pill from normal tickets and kept status labels for refund/cancellation situations |
 | Logout did not return to the right page | After logging out, the user was not being sent back to the homepage | Updated the logout redirect so users return to the homepage |
+| Login errors were not clear enough | The login form rejected wrong details but the page did not show a simple message clearly | Added a clear error message for incorrect login details |
 | Duplicate email accounts were possible | The email field needed stronger checking during registration and profile updates | Added validation so the same email cannot be reused |
 | Under-16 users could register | Date of birth was collected but the age rule was not being checked yet | Added a minimum age check and a clear form error message |
 | Cancellation and support requests were mixed together | Cancellation requests were being shown with general support requests | Separated cancellation requests so they can be managed more clearly |
