@@ -656,6 +656,18 @@ Alongside manual testing, I also checked that the Django project loaded correctl
 | Production security | Heroku config check | `DEBUG` is turned off on the deployed site |
 | Secret values | Git/config check | Secret values are stored in environment settings and not committed to the repository |
 
+#### Lighthouse Desktop
+
+![Lighthouse desktop result](documentation/testing/lighthouse_home.png)
+
+The deployed homepage scored 96 for Performance and 100 for Accessibility, Best Practices and SEO.
+
+#### Lighthouse Mobile
+
+![Lighthouse mobile result](documentation/testing/lighthouse_mobile.png)
+
+The deployed homepage scored 75 for Performance and 100 for Accessibility, Best Practices and SEO. The mobile performance score was lower mainly because of image delivery and external CSS files.
+
 ## Bugs and Fixes
 
 | Bug | Cause | Fix |
