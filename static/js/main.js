@@ -10,8 +10,19 @@ function updateBookingTotal() {
     let ticketCount = 0;
 
     ticketInputs.forEach(function (input) {
-        const quantity = Number(input.value) || 0;
+        let quantity = Number(input.value) || 0;
+        const maxValue = Number(input.max) || 0;
         const price = Number(input.dataset.price) || 0;
+
+        if (quantity < 0) {
+            quantity = 0;
+        }
+
+        if (maxValue && quantity > maxValue) {
+            quantity = maxValue;
+        }
+
+        input.value = quantity;
         ticketCount += quantity;
         total += quantity * price;
     });
