@@ -106,7 +106,11 @@ def create_support_request(request):
 
         form = SupportRequestForm(initial=initial)
 
-    return render(request, "accounts/support_request_form.html", {"form": form, "order": order, "request_type": request_type})
+    return render(
+        request,
+        "accounts/support_request_form.html",
+        {"form": form, "order": order, "request_type": request_type},
+    )
 
 
 @login_required

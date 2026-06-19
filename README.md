@@ -725,6 +725,7 @@ The payment success page was checked on mobile after completing a Stripe test pa
 | SEO checks | Lighthouse and manual review | Meta description added and main pages have clear headings |
 | HTML validation | Nu Html Checker | No errors or warnings found |
 | CSS validation | W3C CSS Validator | No errors found |
+| Python style check | Flake8 | No issues returned |
 | Image delivery | Lighthouse and manual review | Large PNG images were replaced with smaller JPEG versions where needed |
 | Browser check | Chrome and Safari | Main pages loaded successfully in both browsers |
 | Mobile check | Browser developer tools | Main pages worked at 390px and 360px widths |
@@ -756,6 +757,12 @@ The deployed homepage was checked with the Nu Html Checker and no errors or warn
 <img src="documentation/testing/css_validator.png" alt="CSS validation result" width="700">
 
 The deployed homepage was checked with the W3C CSS Validator and no errors were found.
+
+#### Python Validation
+
+<img src="documentation/testing/pep8_validation.png" alt="Flake8 Python validation result" width="700">
+
+Python code was checked with Flake8. The command returned no issues.
 
 ## Bugs and Fixes
 

@@ -13,12 +13,13 @@ from .models import Category, Event, Venue
 
 
 def home(request):
+    available_tickets = Q(ticket_types__sale_active=True, ticket_types__quantity_available__gt=0)
     featured_events = (
         Event.objects.filter(is_published=True)
         .select_related("category", "venue")
         .annotate(
-            starting_price=Min("ticket_types__price", filter=Q(ticket_types__sale_active=True, ticket_types__quantity_available__gt=0)),
-            available_ticket_count=Count("ticket_types", filter=Q(ticket_types__sale_active=True, ticket_types__quantity_available__gt=0)),
+            starting_price=Min("ticket_types__price", filter=available_tickets),
+            available_ticket_count=Count("ticket_types", filter=available_tickets),
         )
         .order_by("start_date", "start_time")[:3]
     )
@@ -32,12 +33,13 @@ def home(request):
 
 
 def event_list(request):
+    available_tickets = Q(ticket_types__sale_active=True, ticket_types__quantity_available__gt=0)
     events = (
         Event.objects.filter(is_published=True)
         .select_related("category", "venue")
         .annotate(
-            starting_price=Min("ticket_types__price", filter=Q(ticket_types__sale_active=True, ticket_types__quantity_available__gt=0)),
-            available_ticket_count=Count("ticket_types", filter=Q(ticket_types__sale_active=True, ticket_types__quantity_available__gt=0)),
+            starting_price=Min("ticket_types__price", filter=available_tickets),
+            available_ticket_count=Count("ticket_types", filter=available_tickets),
         )
         .order_by("start_date", "start_time")
     )
