@@ -389,17 +389,23 @@ The home page introduces EventPass and gives users a clear starting point. It us
 
 The page also includes featured events, popular categories and a short how it works section. This gives users a quick idea of what the site does without making the homepage too long.
 
+![Desktop homepage](documentation/testing/desktop_home.png)
+
 ### Events Page
 
 The events page is where users can browse the published events. It includes search, category filtering, city filtering and price filtering. Each card shows the event image, category, date, city, ticket price and ticket availability.
 
 Sold out events are still shown, but they are marked clearly so users know they cannot book those tickets.
 
+![Desktop events page](documentation/testing/desktop_events.png)
+
 ### Event Detail Page
 
 The event detail page shows more information about one event. It includes the event image, description, date, time, venue details, ticket types and a map for the venue location.
 
 If tickets are available, users can continue to the booking page. If the event is sold out, the page makes this clear instead of showing a normal booking option.
+
+![Desktop event detail page](documentation/testing/desktop_event_detail.png)
 
 ### Register Page
 
