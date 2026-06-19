@@ -607,6 +607,16 @@ Alongside manual testing, I also checked that the Django project loaded correctl
 | Payment pages on mobile | Open payment success, payment cancelled and booking confirmation pages | Cards, buttons and payment animation fit the screen | Pass |
 | Footer on mobile | Scroll to the footer and test social icons | Footer icons are visible and links remain tappable | Pass |
 
+#### Mobile Homepage
+
+![Mobile homepage with closed menu](documentation/testing/mobile_home_closed.jpg)
+
+The mobile homepage was checked with the hamburger menu closed. The logo, carousel, call-to-action button and content cards resized correctly.
+
+![Mobile homepage with open menu](documentation/testing/mobile_home_open.jpg)
+
+The mobile navigation was also checked with the hamburger menu open. The menu links displayed clearly and remained easy to tap.
+
 ### Accessibility Testing
 
 | Test Area | What Was Checked | Result |
