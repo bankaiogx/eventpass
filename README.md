@@ -150,19 +150,19 @@ These layouts helped decide where the main buttons should go, especially on the 
 
 #### Homepage Wireframe
 
-![Homepage wireframe](documentation/wireframes/home_wireframe.svg)
+<img src="documentation/wireframes/home_wireframe.svg" alt="Homepage wireframe" width="520">
 
 #### Events Page Wireframe
 
-![Events page wireframe](documentation/wireframes/events_wireframe.svg)
+<img src="documentation/wireframes/events_wireframe.svg" alt="Events page wireframe" width="520">
 
 #### Event Detail Wireframe
 
-![Event detail wireframe](documentation/wireframes/event_detail_wireframe.svg)
+<img src="documentation/wireframes/event_detail_wireframe.svg" alt="Event detail wireframe" width="520">
 
 #### Booking Page Wireframe
 
-![Booking page wireframe](documentation/wireframes/booking_wireframe.svg)
+<img src="documentation/wireframes/booking_wireframe.svg" alt="Booking page wireframe" width="520">
 
 ### Design Tokens
 
@@ -405,7 +405,7 @@ The home page introduces EventPass and gives users a clear starting point. It us
 
 The page also includes featured events, popular categories and a short how it works section. This gives users a quick idea of what the site does without making the homepage too long.
 
-![Desktop homepage](documentation/testing/desktop_home.png)
+<img src="documentation/testing/desktop_home.png" alt="Desktop homepage" width="700">
 
 ### Events Page
 
@@ -413,7 +413,7 @@ The events page is where users can browse the published events. It includes sear
 
 Sold out events are still shown, but they are marked clearly so users know they cannot book those tickets.
 
-![Desktop events page](documentation/testing/desktop_events.png)
+<img src="documentation/testing/desktop_events.png" alt="Desktop events page" width="700">
 
 ### Event Detail Page
 
@@ -421,7 +421,7 @@ The event detail page shows more information about one event. It includes the ev
 
 If tickets are available, users can continue to the booking page. If the event is sold out, the page makes this clear instead of showing a normal booking option.
 
-![Desktop event detail page](documentation/testing/desktop_event_detail.png)
+<img src="documentation/testing/desktop_event_detail.png" alt="Desktop event detail page" width="700">
 
 ### Register Page
 
@@ -435,7 +435,7 @@ The login page lets existing users access their account. Protected pages such as
 
 The profile page lets logged-in users update their name, email address and date of birth. It also links users to the password change page so account details are kept separate from password updates.
 
-![Profile page](documentation/testing/profile.png)
+<img src="documentation/testing/profile.png" alt="Profile page" width="700">
 
 ### Booking Page
 
@@ -453,25 +453,25 @@ The booking confirmation page shows the confirmed order details, including the e
 
 The My Tickets page shows the user's paid bookings. It also shows cancellation or refund information if an order has a request linked to it.
 
-![My Tickets page](documentation/testing/my_tickets.png)
+<img src="documentation/testing/my_tickets.png" alt="My Tickets page" width="700">
 
 ### Support Pages
 
 The support pages let logged-in users create, edit and delete support tickets. Users can also request cancellation for an order, which is then managed separately by the site owner in admin.
 
-![Support page](documentation/testing/support.png)
+<img src="documentation/testing/support.png" alt="Support page" width="700">
 
 ### Admin Area
 
 The admin area is used by the site owner to manage the website content and booking data. Categories, venues, events, ticket types, orders, refunds, support tickets and cancellation requests are all managed through Django admin.
 
-![Admin area](documentation/testing/admin.png)
+<img src="documentation/testing/admin.png" alt="Admin area" width="700">
 
 ### Error Pages
 
 Custom 404 and 500 pages are included so users get a styled page if something goes wrong or a page cannot be found.
 
-![Custom 404 page](documentation/testing/404_page.png)
+<img src="documentation/testing/404_page.png" alt="Custom 404 page" width="700">
 
 ## Accessibility Features
 
@@ -641,35 +641,35 @@ Alongside manual testing, I also checked that the Django project loaded correctl
 
 #### Mobile Homepage
 
-![Mobile homepage with closed menu](documentation/testing/mobile_home_closed.jpg)
+<img src="documentation/testing/mobile_home_closed.jpg" alt="Mobile homepage with closed menu" width="320">
 
 The mobile homepage was checked with the hamburger menu closed. The logo, carousel, call-to-action button and content cards resized correctly.
 
-![Mobile homepage with open menu](documentation/testing/mobile_home_open.jpg)
+<img src="documentation/testing/mobile_home_open.jpg" alt="Mobile homepage with open menu" width="320">
 
 The mobile navigation was also checked with the hamburger menu open. The menu links displayed clearly and remained easy to tap.
 
 #### Mobile Events Page
 
-![Mobile events page](documentation/testing/mobile_events.jpg)
+<img src="documentation/testing/mobile_events.jpg" alt="Mobile events page" width="320">
 
 The events page was checked on mobile. The filter controls stacked correctly and the event cards stayed readable on a smaller screen.
 
 #### Mobile Event Detail Page
 
-![Mobile event detail page](documentation/testing/mobile_event_detail.jpg)
+<img src="documentation/testing/mobile_event_detail.jpg" alt="Mobile event detail page" width="320">
 
 The event detail page was checked on mobile. The event information, venue section, map and action buttons stayed readable.
 
 #### Mobile Booking Page
 
-![Mobile booking page](documentation/testing/mobile_booking.jpg)
+<img src="documentation/testing/mobile_booking.jpg" alt="Mobile booking page" width="320">
 
 The booking page was checked on mobile. The ticket quantity controls, estimated total and payment button remained easy to use.
 
 #### Mobile Payment Success Page
 
-![Mobile payment success page](documentation/testing/mobile_payment_success.jpg)
+<img src="documentation/testing/mobile_payment_success.jpg" alt="Mobile payment success page" width="320">
 
 The payment success page was checked on mobile after completing a Stripe test payment. The confirmation card, animation and buttons displayed correctly.
 
@@ -726,25 +726,25 @@ The payment success page was checked on mobile after completing a Stripe test pa
 
 #### Lighthouse Desktop
 
-![Lighthouse desktop result](documentation/testing/lighthouse_home.png)
+<img src="documentation/testing/lighthouse_home.png" alt="Lighthouse desktop result" width="700">
 
 The deployed homepage scored 96 for Performance and 100 for Accessibility, Best Practices and SEO.
 
 #### Lighthouse Mobile
 
-![Lighthouse mobile result](documentation/testing/lighthouse_mobile.png)
+<img src="documentation/testing/lighthouse_mobile.png" alt="Lighthouse mobile result" width="700">
 
 The deployed homepage scored 75 for Performance and 100 for Accessibility, Best Practices and SEO. The mobile performance score was lower mainly because of image delivery and external CSS files.
 
 #### HTML Validation
 
-![HTML validation result](documentation/testing/html_validator.png)
+<img src="documentation/testing/html_validator.png" alt="HTML validation result" width="700">
 
 The deployed homepage was checked with the Nu Html Checker and no errors or warnings were found.
 
 #### CSS Validation
 
-![CSS validation result](documentation/testing/css_validator.png)
+<img src="documentation/testing/css_validator.png" alt="CSS validation result" width="700">
 
 The deployed homepage was checked with the W3C CSS Validator and no errors were found.
 
