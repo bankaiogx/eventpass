@@ -696,6 +696,8 @@ The payment success page was checked on mobile after completing a Stripe test pa
 |-------|---------------|--------|
 | Accessibility score | Lighthouse | Pass - Accessibility scored 100 |
 | SEO checks | Lighthouse and manual review | Meta description added and main pages have clear headings |
+| HTML validation | Nu Html Checker | No errors or warnings found |
+| CSS validation | W3C CSS Validator | No errors found |
 | Image delivery | Lighthouse and manual review | Large PNG images were replaced with smaller JPEG versions where needed |
 | Browser check | Chrome and Safari | Main pages loaded successfully in both browsers |
 | Mobile check | Browser developer tools | Main pages worked at 390px and 360px widths |
@@ -715,6 +717,18 @@ The deployed homepage scored 96 for Performance and 100 for Accessibility, Best 
 ![Lighthouse mobile result](documentation/testing/lighthouse_mobile.png)
 
 The deployed homepage scored 75 for Performance and 100 for Accessibility, Best Practices and SEO. The mobile performance score was lower mainly because of image delivery and external CSS files.
+
+#### HTML Validation
+
+![HTML validation result](documentation/testing/html_validator.png)
+
+The deployed homepage was checked with the Nu Html Checker and no errors or warnings were found.
+
+#### CSS Validation
+
+![CSS validation result](documentation/testing/css_validator.png)
+
+The deployed homepage was checked with the W3C CSS Validator and no errors were found.
 
 ## Bugs and Fixes
 
