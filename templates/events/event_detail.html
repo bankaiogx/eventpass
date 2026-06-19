@@ -5,6 +5,7 @@
 {% block title %}{{ event.title }} | EventPass{% endblock %}
 
 {% block content %}
+<!-- Main event image and event details. -->
 <article class="event-detail">
     <img class="detail-image" src="{{ event|event_image_url }}" alt="{{ event.title }} event image" width="900" height="506" decoding="async">
 
@@ -20,6 +21,7 @@
                 <p>{{ event.description }}</p>
 
                 <div class="venue-section">
+                    <!-- Venue information and map. -->
                     <h2>Venue</h2>
                     <p class="event-meta">{{ event.venue.name }}, {{ event.venue.city }}</p>
                     <p class="event-meta">{{ event.venue.address }}, {{ event.venue.postcode }}</p>
@@ -45,6 +47,7 @@
         </section>
 
         <aside class="col-lg-4">
+            <!-- Ticket options for the selected event. -->
             <div class="ticket-panel">
                 <h2>Tickets</h2>
                 {% if ticket_types %}

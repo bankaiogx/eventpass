@@ -9,6 +9,8 @@
     --border: #E5E7EB;
 }
 
+/* Base layout */
+
 * {
     box-sizing: border-box;
 }
@@ -53,6 +55,8 @@ a {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Navbar */
 
 .site-header {
     background: var(--navy);
@@ -158,6 +162,8 @@ a {
 .page-hero {
     margin-bottom: 28px;
 }
+
+/* Home page */
 
 .home-carousel {
     background: var(--navy);
@@ -309,6 +315,8 @@ a {
     margin-bottom: 8px;
 }
 
+/* Cards and panels */
+
 .filter-panel,
 .ticket-panel,
 .empty-state {
@@ -432,6 +440,8 @@ a {
     text-align: center;
 }
 
+/* Booking page */
+
 .order-confirmation {
     text-align: center;
 }
@@ -501,6 +511,8 @@ a {
     margin-top: 4px;
 }
 
+/* Forms */
+
 .filter-form {
     display: grid;
     gap: 16px;
@@ -546,6 +558,8 @@ select {
     cursor: not-allowed;
     opacity: 0.65;
 }
+
+/* Event cards */
 
 .event-grid {
     display: grid;
@@ -666,6 +680,8 @@ select {
     color: #B42318;
 }
 
+/* Event detail page */
+
 .event-detail {
     display: grid;
     gap: 24px;
@@ -732,6 +748,8 @@ select {
     padding: 12px;
 }
 
+/* Footer */
+
 .site-footer {
     border-top: 1px solid var(--border);
     color: var(--muted);
@@ -750,6 +768,8 @@ select {
     color: var(--navy);
     font-size: 1.25rem;
 }
+
+/* Responsive styles */
 
 @media (prefers-reduced-motion: reduce) {
     .scroll-reveal {

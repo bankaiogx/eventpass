@@ -5,6 +5,7 @@ const checkoutButton = document.getElementById("checkout-button");
 const checkoutForm = document.getElementById("checkout-form");
 let checkoutLoading = false;
 
+// Update booking total when ticket quantities change.
 function updateBookingTotal() {
     let total = 0;
     let ticketCount = 0;
@@ -52,6 +53,7 @@ ticketInputs.forEach(function (input) {
 
 updateBookingTotal();
 
+// Disable checkout after submit so the user does not double click.
 if (checkoutForm && checkoutButton) {
     checkoutForm.addEventListener("submit", function () {
         checkoutLoading = true;
@@ -62,6 +64,7 @@ if (checkoutForm && checkoutButton) {
 
 const quantityButtons = document.querySelectorAll(".quantity-button");
 
+// Quantity buttons increase or decrease ticket amounts.
 quantityButtons.forEach(function (button) {
     button.addEventListener("click", function () {
         const input = this.parentElement.querySelector(".ticket-quantity");
@@ -80,6 +83,7 @@ quantityButtons.forEach(function (button) {
     });
 });
 
+// Load Lottie only on pages that use the animation.
 if (document.querySelector("dotlottie-player")) {
     const script = document.createElement("script");
     script.type = "module";
@@ -89,6 +93,7 @@ if (document.querySelector("dotlottie-player")) {
 
 const revealItems = document.querySelectorAll(".home-section, .event-card, .filter-panel, .auth-card, .detail-main, .ticket-panel");
 
+// Reveal cards and sections when they scroll into view.
 if ("IntersectionObserver" in window) {
     const revealObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
@@ -114,6 +119,7 @@ if ("IntersectionObserver" in window) {
 const navLinks = document.querySelectorAll("[data-nav]");
 const currentPath = window.location.pathname;
 
+// Highlight the current navbar link.
 navLinks.forEach(function (link) {
     const navType = link.dataset.nav;
 
