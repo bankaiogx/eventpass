@@ -455,6 +455,8 @@ The admin area is used by the site owner to manage the website content and booki
 
 Custom 404 and 500 pages are included so users get a styled page if something goes wrong or a page cannot be found.
 
+![Custom 404 page](documentation/testing/404_page.png)
+
 ## Accessibility Features
 
 Accessibility was considered throughout the project so the site is easier to use and understand. I kept the accessibility work simple and relevant rather than adding unnecessary ARIA everywhere.
