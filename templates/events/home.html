@@ -3,6 +3,9 @@
 {% load event_images %}
 
 {% block title %}EventPass | Local Events{% endblock %}
+{% block extra_head %}
+    <link rel="preload" as="image" href="{% static 'images/carousel_1.jpg' %}">
+{% endblock %}
 
 {% block content %}
 <section id="homeCarousel" class="carousel slide home-carousel" data-bs-ride="carousel">
@@ -13,7 +16,7 @@
     </div>
 
     <div class="carousel-inner">
-        <div class="carousel-item active" style="background-image: url('{% static "images/carousel_1.png" %}');">
+        <div class="carousel-item active" style="background-image: url('{% static "images/carousel_1.jpg" %}');">
             <div class="carousel-panel">
                 <p class="eyebrow">EventPass</p>
                 <h1>Find local events worth showing up for.</h1>
@@ -22,7 +25,7 @@
             </div>
         </div>
 
-        <div class="carousel-item" style="background-image: url('{% static "images/carousel_2.png" %}');">
+        <div class="carousel-item" style="background-image: url('{% static "images/carousel_2.jpg" %}');">
             <div class="carousel-panel">
                 <p class="eyebrow">Local listings</p>
                 <h1>Search by category, city and price.</h1>
@@ -31,7 +34,7 @@
             </div>
         </div>
 
-        <div class="carousel-item" style="background-image: url('{% static "images/carousel_3.png" %}');">
+        <div class="carousel-item" style="background-image: url('{% static "images/carousel_3.jpg" %}');">
             <div class="carousel-panel">
                 <p class="eyebrow">Easy booking</p>
                 <h1>Choose tickets and complete checkout.</h1>
@@ -92,7 +95,7 @@
                 <div class="col-md-6 col-lg-4">
                     <article class="card event-card h-100">
                         <div class="event-card-image">
-                            <img class="card-img-top" src="{% static event|event_static_image %}" alt="{{ event.title }} event image">
+                            <img class="card-img-top" src="{{ event|event_image_url }}" alt="{{ event.title }} event image" width="900" height="506" loading="lazy" decoding="async">
                             <span class="event-date-badge">
                                 {{ event.start_date|date:"d M" }}
                             </span>

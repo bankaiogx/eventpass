@@ -68,7 +68,7 @@
             <div class="col-md-6 col-lg-4">
                 <article class="card event-card h-100">
                     <div class="event-card-image">
-                        <img class="card-img-top" src="{% static event|event_static_image %}" alt="{{ event.title }} event image">
+                        <img class="card-img-top" src="{{ event|event_image_url }}" alt="{{ event.title }} event image" width="900" height="506" loading="lazy" decoding="async">
                         <span class="event-date-badge">
                             {{ event.start_date|date:"d M" }}
                         </span>

@@ -6,7 +6,7 @@
 
 {% block content %}
 <article class="event-detail">
-    <img class="detail-image" src="{% static event|event_static_image %}" alt="{{ event.title }} event image">
+    <img class="detail-image" src="{{ event|event_image_url }}" alt="{{ event.title }} event image" width="900" height="506" decoding="async">
 
     <div class="row g-4">
         <section class="col-lg-8">
