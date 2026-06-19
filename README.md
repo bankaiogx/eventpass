@@ -683,6 +683,7 @@ Alongside manual testing, I also checked that the Django project loaded correctl
 | Uploaded images did not show after deployment | Heroku does not keep uploaded media files permanently | Added S3 media storage so uploaded event images can load on the deployed site |
 | Images were too large on the homepage | Event and carousel images were large PNG files, which affected Lighthouse performance | Added smaller JPEG versions and updated the site to use them |
 | Lighthouse showed a missing meta description | The base template did not include a page description | Added a meta description so pages have basic SEO information |
+| Browser tab icon showed a 404 error | No favicon was linked in the base template | Added a favicon link so the browser can load the site icon |
 
 ## Version Control
 
