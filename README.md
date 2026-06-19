@@ -510,6 +510,18 @@ Custom CSS media queries were used alongside Bootstrap to adjust spacing, image 
 
 ## Testing
 
+### Testing Approach
+
+Testing was mainly carried out manually by using the website in the browser and checking each feature as it was added. This suited the project because a lot of the functionality depends on user interaction, forms, authentication, search filters, ticket quantities, Stripe checkout, support requests and admin updates.
+
+Manual testing allowed me to check the project from a user's point of view. For example, I could test whether a user could register, log in, browse events, choose tickets, complete checkout, view their tickets and request support for an order.
+
+I also checked the website across different screen sizes and browsers. The main testing was done in Chrome, with additional checks in Safari because this is the browser I commonly use on my Mac. Mobile responsiveness was tested by resizing the browser window and using browser developer tools to check smaller screen widths. This helped me spot issues with the navbar, event cards, booking form and payment pages on mobile.
+
+I also tested the project during deployment because the local version and Heroku version use different environments. Locally the project uses SQLite, while the deployed version uses Heroku Postgres and S3 media storage. This meant I had to check migrations, environment variables, static files, uploaded images and Stripe settings separately on Heroku.
+
+Alongside manual testing, I also checked that the Django project loaded correctly and that the static files and media files worked properly before and after deployment.
+
 ### Manual Testing
 
 #### Navigation
@@ -545,6 +557,7 @@ Custom CSS media queries were used alongside Bootstrap to adjust spacing, image 
 | Booking access | Only logged-in users can book | Try opening booking page while logged out | User is redirected to login | Pass |
 | Booking validation | Ticket quantity is controlled | Try 0 tickets and a quantity above available stock | Checkout is blocked for 0 tickets and quantity cannot go above stock | Pass |
 | Stripe checkout | Test payment works | Select a ticket and complete Stripe test checkout | User returns to payment success page and order is created | Pass |
+| Email confirmation | Booking confirmation email is sent | Complete a Stripe test payment with a user that has an email address | Confirmation email is sent and the order is marked as email confirmation sent | Pass |
 | Booking confirmation | Paid tickets show in account | Open confirmation page and My Tickets after payment | Order details and ticket information display correctly | Pass |
 | Payment cancelled page | Cancel page displays correctly | Open `/payments/cancel/` | Payment Cancelled page displays with Browse Events and Back Home links | Pass |
 
@@ -607,6 +620,41 @@ Custom CSS media queries were used alongside Bootstrap to adjust spacing, image 
 | Form labels | Register, login, profile, event filter, booking and support forms have visible labels | Pass |
 | Keyboard use | Main links, buttons, form fields, carousel controls and mobile menu can be reached and used with keyboard controls | Pass |
 | Responsive layout | Pages were checked at desktop, 390px mobile width and 360px mobile width | Pass |
+
+### User Story Verification
+
+| User Story | How It Was Met |
+|------------|----------------|
+| As a visitor, I want to browse events without creating an account so I can see what is available first. | Published events can be viewed on the homepage, events page and event detail pages without logging in. |
+| As a visitor, I want to search and filter events so I can find events that match my interests. | The events page includes search, category, city and price filters. |
+| As a visitor, I want to view event details before booking. | Each event card links to a detail page with description, date, time, venue, tickets and map information. |
+| As a visitor, I want to be asked to log in or register before booking. | Booking pages require login, so logged-out users are redirected before checkout. |
+| As a registered user, I want to log in and log out so my account is protected. | Login and logout links are included in the navbar and the navbar changes depending on authentication state. |
+| As a registered user, I want to update my profile details. | The profile page lets users update their name, email address and date of birth. |
+| As a registered user, I want to change my password. | A password change form is available from the profile area. |
+| As a registered user, I want to choose a ticket type and quantity. | The booking page lists available ticket types and lets users select ticket quantities. |
+| As a registered user, I want ticket quantities to be validated. | The booking form blocks zero tickets and quantities above available stock. |
+| As a registered user, I want to pay through Stripe test checkout. | Users are redirected to Stripe test checkout and returned to EventPass after payment. |
+| As a registered user, I want to see a payment result page. | Payment success and payment cancelled pages give clear feedback after checkout. |
+| As a registered user, I want to view my booked tickets. | The My Tickets page shows paid orders for the logged-in user. |
+| As a registered user, I want to request help or cancellation for an order. | Users can create support tickets and request cancellation from eligible orders. |
+| As the site owner, I want to manage events through admin. | Categories, venues, events and ticket types are managed through Django admin. |
+| As the site owner, I want to manage orders and refunds. | Orders, refund statuses and cancellation requests can be managed through admin. |
+| As the site owner, I want normal users blocked from admin. | Normal users cannot access the admin dashboard without authorised staff/superuser access. |
+
+### Validation
+
+| Check | Tool / Method | Result |
+|-------|---------------|--------|
+| Accessibility score | Lighthouse | Pass - Accessibility scored 100 |
+| SEO checks | Lighthouse and manual review | Meta description added and main pages have clear headings |
+| Image delivery | Lighthouse and manual review | Large PNG images were replaced with smaller JPEG versions where needed |
+| Browser check | Chrome and Safari | Main pages loaded successfully in both browsers |
+| Mobile check | Browser developer tools | Main pages worked at 390px and 360px widths |
+| Internal links | Live site link check | Internal links checked successfully with no broken links found |
+| Commented-out code | Manual/codebase check | No unused commented-out code was found |
+| Production security | Heroku config check | `DEBUG` is turned off on the deployed site |
+| Secret values | Git/config check | Secret values are stored in environment settings and not committed to the repository |
 
 ## Bugs and Fixes
 
