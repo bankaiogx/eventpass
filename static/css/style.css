@@ -419,19 +419,23 @@ a {
 .payment-animation-frame {
     align-items: center;
     display: flex;
-    height: 190px;
+    height: 125px;
     justify-content: center;
-    margin: -8px auto 8px;
+    margin: 4px auto 22px;
     max-width: 100%;
     overflow: hidden;
+    position: relative;
 }
 
 .payment-animation {
     display: block;
-    height: 470px;
-    margin: -118px 0 0;
+    height: 360px;
+    left: 50%;
     max-width: none;
-    width: 470px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 360px;
 }
 
 .payment-summary {
@@ -829,13 +833,13 @@ select {
     }
 
     .payment-animation-frame {
-        height: 160px;
+        height: 115px;
+        margin: 0 auto 18px;
     }
 
     .payment-animation {
-        height: 400px;
-        margin-top: -100px;
-        width: 400px;
+        height: 330px;
+        width: 330px;
     }
 
     .site-logo {
