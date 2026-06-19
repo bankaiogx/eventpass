@@ -675,7 +675,11 @@ Alongside manual testing, I also checked that the Django project loaded correctl
 | Duplicate email accounts were possible | The email field needed stronger checking during registration and profile updates | Added validation so the same email cannot be reused |
 | Under-16 users could register | Date of birth was collected but the age rule was not being checked yet | Added a minimum age check and a clear form error message |
 | Cancellation and support requests were mixed together | Cancellation requests were being shown with general support requests | Separated cancellation requests so they can be managed more clearly |
+| Refunded cancellation requests still looked rejected | Refund status and request status were not clear enough after admin updates | Updated the refund/cancellation display so refunded orders show the correct status |
 | Refunded orders still affected ticket availability | Refunded/cancelled tickets were still counted in stock logic | Updated the cancellation/refund flow so ticket availability is handled correctly |
+| Booking confirmation email needed tracking | Email confirmation could be sent without a clear saved flag on the order | Added an email confirmation flag so the order records when confirmation has been sent |
+| Register page banner looked awkward | The side banner image made the form page feel unbalanced | Removed the banner and kept the register page as a clean form card |
+| Uploaded event images were being ignored | Event pages were showing fixed fallback images instead of checking for uploaded images first | Updated the image helper so uploaded images show first and fallback images show only when needed |
 | Uploaded images did not show after deployment | Heroku does not keep uploaded media files permanently | Added S3 media storage so uploaded event images can load on the deployed site |
 | Images were too large on the homepage | Event and carousel images were large PNG files, which affected Lighthouse performance | Added smaller JPEG versions and updated the site to use them |
 | Lighthouse showed a missing meta description | The base template did not include a page description | Added a meta description so pages have basic SEO information |
