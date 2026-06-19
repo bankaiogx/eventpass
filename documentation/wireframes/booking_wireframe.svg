@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="980" viewBox="0 0 720 980">
+  <rect width="720" height="980" fill="#ffffff"/>
+  <g fill="none" stroke="#333" stroke-width="2">
+    <rect x="40" y="30" width="640" height="920"/>
+    <rect x="40" y="30" width="640" height="58"/>
+    <rect x="65" y="52" width="120" height="16"/>
+    <line x1="470" y1="60" x2="620" y2="60"/>
+    <rect x="165" y="125" width="390" height="705"/>
+    <text x="200" y="180" font-family="Arial" font-size="22" fill="#333">Book Ticket</text>
+    <line x1="200" y1="215" x2="420" y2="215"/>
+    <rect x="200" y="265" width="320" height="160"/>
+    <line x1="225" y1="310" x2="385" y2="310"/>
+    <rect x="225" y="350" width="270" height="40"/>
+    <rect x="200" y="445" width="320" height="160"/>
+    <line x1="225" y1="490" x2="385" y2="490"/>
+    <rect x="225" y="530" width="270" height="40"/>
+    <rect x="200" y="640" width="320" height="80"/>
+    <line x1="260" y1="680" x2="460" y2="680"/>
+    <rect x="200" y="755" width="320" height="42"/>
+  </g>
+</svg>

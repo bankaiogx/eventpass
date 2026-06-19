@@ -148,6 +148,22 @@ The main pages planned were:
 
 These layouts helped decide where the main buttons should go, especially on the event detail and booking pages where the user needs a clear path from viewing an event to completing checkout.
 
+#### Homepage Wireframe
+
+![Homepage wireframe](documentation/wireframes/home_wireframe.svg)
+
+#### Events Page Wireframe
+
+![Events page wireframe](documentation/wireframes/events_wireframe.svg)
+
+#### Event Detail Wireframe
+
+![Event detail wireframe](documentation/wireframes/event_detail_wireframe.svg)
+
+#### Booking Page Wireframe
+
+![Booking page wireframe](documentation/wireframes/booking_wireframe.svg)
+
 ### Design Tokens
 
 Design tokens were used to keep the styling consistent across the website. Instead of choosing colours and spacing separately on each page, I placed the main style values in the CSS file and reused them throughout the project.

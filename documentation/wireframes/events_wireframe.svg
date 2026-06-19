@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="980" viewBox="0 0 720 980">
+  <rect width="720" height="980" fill="#ffffff"/>
+  <g fill="none" stroke="#333" stroke-width="2">
+    <rect x="40" y="30" width="640" height="920"/>
+    <rect x="40" y="30" width="640" height="58"/>
+    <rect x="65" y="52" width="120" height="16"/>
+    <line x1="470" y1="60" x2="620" y2="60"/>
+    <text x="80" y="140" font-family="Arial" font-size="22" fill="#333">Events</text>
+    <line x1="80" y1="165" x2="360" y2="165"/>
+    <rect x="80" y="205" width="560" height="105"/>
+    <rect x="105" y="235" width="145" height="35"/>
+    <rect x="270" y="235" width="145" height="35"/>
+    <rect x="435" y="235" width="145" height="35"/>
+    <rect x="80" y="350" width="170" height="230"/>
+    <rect x="275" y="350" width="170" height="230"/>
+    <rect x="470" y="350" width="170" height="230"/>
+    <line x1="95" y1="460" x2="235" y2="460"/>
+    <line x1="290" y1="460" x2="430" y2="460"/>
+    <line x1="485" y1="460" x2="625" y2="460"/>
+    <rect x="80" y="625" width="170" height="230"/>
+    <rect x="275" y="625" width="170" height="230"/>
+    <rect x="470" y="625" width="170" height="230"/>
+    <line x1="95" y1="735" x2="235" y2="735"/>
+    <line x1="290" y1="735" x2="430" y2="735"/>
+    <line x1="485" y1="735" x2="625" y2="735"/>
+  </g>
+</svg>
