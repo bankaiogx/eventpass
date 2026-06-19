@@ -134,7 +134,7 @@ The main user journey planned was:
 
 #### Project Timeline
 
-<img src="documentation/planning/project_timeline.png" alt="Project timeline showing planned tasks across three weeks" width="700">
+<img src="documentation/planning/project_timeline.png" alt="Project timeline showing planned tasks across three weeks" width="500">
 
 This timeline was used to plan the main stages of the project, including research, wireframes, Django setup, authentication, CRUD features, booking, support and documentation.
 
@@ -156,19 +156,19 @@ These layouts helped decide where the main buttons should go, especially on the 
 
 #### Homepage Wireframe
 
-<img src="documentation/wireframes/home_wireframe.svg" alt="Homepage wireframe" width="520">
+<img src="documentation/wireframes/home_wireframe.svg" alt="Homepage wireframe" width="360">
 
 #### Events Page Wireframe
 
-<img src="documentation/wireframes/events_wireframe.svg" alt="Events page wireframe" width="520">
+<img src="documentation/wireframes/events_wireframe.svg" alt="Events page wireframe" width="360">
 
 #### Event Detail Wireframe
 
-<img src="documentation/wireframes/event_detail_wireframe.svg" alt="Event detail wireframe" width="520">
+<img src="documentation/wireframes/event_detail_wireframe.svg" alt="Event detail wireframe" width="360">
 
 #### Booking Page Wireframe
 
-<img src="documentation/wireframes/booking_wireframe.svg" alt="Booking page wireframe" width="520">
+<img src="documentation/wireframes/booking_wireframe.svg" alt="Booking page wireframe" width="360">
 
 ### Design Tokens
 
