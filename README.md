@@ -143,9 +143,11 @@ Accessibility was considered by using readable colours, clear labels, alt text f
 
 ## Database Design
 
-The database was planned around the main things the website needs to store: events, ticket types, orders and user support requests. The `Event` model is the main part of the public website because most pages are based around browsing or booking an event.
+The database was designed around the main event booking system. The `Event` model is the central model because most of the other data connects back to an event, such as ticket types, orders and venues. I planned it this way because the website is mainly based around users being able to browse events, book tickets and view their orders.
 
-Events are managed by the site owner through Django admin, so there is no organiser field on the event model. This keeps the project simpler and matches the final version of EventPass.
+EventPass is not an organiser marketplace, so there is no organiser field on the event model. Events are created and managed by the site owner through Django admin. This keeps the database cleaner and matches the final scope of the project.
+
+The diagram below shows the main relationships between the models. It is a simplified ER diagram, so it focuses on the core structure rather than showing every extra field used later for payments, uploaded images and admin handling.
 
 ```mermaid
 erDiagram
@@ -233,18 +235,18 @@ erDiagram
 
 ### Model Breakdown
 
-| Model | What It Stores | Main Use |
-|-------|----------------|----------|
-| `User` | Login details using Django's built-in user model. | Used for accounts, orders and support requests. |
-| `Profile` | Extra user details such as date of birth. | Used for profile updates and age checks. |
-| `Category` | Event categories such as Music, Food or Workshop. | Lets events be grouped and filtered. |
-| `Venue` | Venue name, address, city and postcode. | Shows where an event takes place. |
-| `Event` | Event title, description, date, time, image and published status. | Main model used for event listing and detail pages. |
-| `TicketType` | Ticket name, price, available quantity and sale status. | Controls what tickets can be booked for an event. |
-| `Order` | Booking/payment information for a user. | Stores paid bookings and refund status. |
-| `OrderItem` | Ticket type, quantity and price at the time of purchase. | Stores the tickets inside an order. |
-| `SupportRequest` | User help messages and cancellation requests. | Lets users contact the site owner about orders or general issues. |
-| `CancellationRequest` | Cancellation requests shown separately in admin. | Makes order cancellation requests easier to manage. |
+| Model | Purpose | Important Fields | Relationship |
+|-------|---------|------------------|--------------|
+| `User` | Handles user accounts using Django's built-in user model. | username, email, password | A user can place orders and create support requests. |
+| `Profile` | Stores extra account details. | user, date_of_birth | Each profile belongs to one user and is used for profile updates and age checks. |
+| `Category` | Stores event categories such as Music, Food and Workshop. | name, slug | One category can have many events. |
+| `Venue` | Stores where an event takes place. | name, address, city, postcode | One venue can host many events. |
+| `Event` | Stores the main event information shown on the public website. | category, venue, title, description, start_date, start_time, end_time, image, is_published | Each event belongs to one category and one venue, and can have many ticket types and orders. |
+| `TicketType` | Stores the tickets available for each event. | event, name, price, quantity_available, sale_active | Each ticket type belongs to one event and can appear in order items. |
+| `Order` | Stores a user's paid booking. | user, event, total_amount, payment_status, refund_status | Each order belongs to one user and one event. |
+| `OrderItem` | Stores the tickets inside an order. | order, ticket_type, quantity, price_at_purchase | Each order item belongs to one order and one ticket type. |
+| `SupportRequest` | Stores help requests from users. | user, order, request_type, subject, message, status | A support request belongs to one user and can optionally be linked to an order. |
+| `CancellationRequest` | Shows cancellation requests separately in admin. | user, order, status, refund_status | Uses the support request data but makes cancellation requests easier for the site owner to manage. |
 
 ### Main Relationships
 
@@ -259,11 +261,130 @@ erDiagram
 - One ticket type can appear in many order items.
 - One order can have support or cancellation requests linked to it.
 
-### Data Handling
+### Database Constraints
 
-The database is used for the main actions on the website. Users can register, update profile details, book tickets, view orders and submit support or cancellation requests. The site owner can manage events, venues, categories, ticket types, orders and refunds through Django admin.
+I also added validation and checks to keep the data cleaner:
 
-Ticket stock is also stored in the database. Ticket quantities are checked before checkout, reduced after successful payment and returned if an order is refunded. This helps stop users from booking tickets that are no longer available.
+- Event slugs are unique so event/category links stay clean.
+- Only published events are shown on the public event pages.
+- Ticket quantities are checked before checkout.
+- Users cannot continue with zero tickets.
+- Users cannot book more tickets than the available stock.
+- Users under 16 are blocked from registering.
+- Paid bookings are stored after successful Stripe checkout.
+- Refunded orders return ticket stock so the event availability stays correct.
+
+### CRUD and Data Handling
+
+The project uses the database for more than just displaying static content. Users can register, update their profile details, change their password, book tickets, view their orders and create support or cancellation requests.
+
+The site owner can also create, read, update and delete categories, venues, events and ticket types through Django admin. Orders, refunds, support tickets and cancellation requests can also be managed through admin. This shows data being created, read, updated and deleted through the public website and the admin panel.
+
+Ticket stock is stored in the database as well. Ticket quantities are checked before checkout, reduced after successful payment and returned if an order is refunded. This helps stop users from booking tickets that are no longer available.
+
+## Features
+
+### Existing Features
+
+- Homepage with Bootstrap carousel
+- Featured events section
+- Popular category links
+- How it works section
+- Event listing page
+- Event detail page
+- Search and filtering
+- Sold out event badges
+- Ticket availability display
+- Ticket quantity validation
+- Stripe test checkout
+- Payment success page
+- Payment cancelled page
+- Booking confirmation page
+- My Tickets page
+- Signup, login and logout
+- Automatic login after registration
+- Age check on registration
+- Profile update form
+- Password change form
+- Support ticket create, edit and delete
+- Cancellation requests
+- Admin event management
+- Admin ticket type management
+- Admin order and refund management
+- Uploaded event images
+- S3 media storage
+- Custom 404 and 500 pages
+- Responsive navbar and footer
+- Basic JavaScript animations and booking updates
+
+### Future Features
+
+- Email ticket delivery with ticket PDFs or QR codes.
+- More detailed order history for users.
+- Better admin reporting for ticket sales.
+- More event categories and location-based browsing.
+- Full production Stripe webhook setup.
+- Customer email receipts from the payment provider.
+
+## Page Breakdown
+
+### Home Page
+
+The home page introduces EventPass and gives users a clear starting point. It uses a Bootstrap carousel, event imagery and call-to-action buttons so users can either browse events or register for an account.
+
+The page also includes featured events, popular categories and a short how it works section. This gives users a quick idea of what the site does without making the homepage too long.
+
+### Events Page
+
+The events page is where users can browse the published events. It includes search, category filtering, city filtering and price filtering. Each card shows the event image, category, date, city, ticket price and ticket availability.
+
+Sold out events are still shown, but they are marked clearly so users know they cannot book those tickets.
+
+### Event Detail Page
+
+The event detail page shows more information about one event. It includes the event image, description, date, time, venue details, ticket types and a map for the venue location.
+
+If tickets are available, users can continue to the booking page. If the event is sold out, the page makes this clear instead of showing a normal booking option.
+
+### Register Page
+
+The register page lets new users create an account. The form collects username, name, email, date of birth and password details. Users under 16 are blocked from registering, and users are logged in automatically after a successful signup.
+
+### Login Page
+
+The login page lets existing users access their account. Protected pages such as booking, My Tickets, Profile and Support require the user to be logged in.
+
+### Profile Page
+
+The profile page lets logged-in users update their name, email address and date of birth. It also links users to the password change page so account details are kept separate from password updates.
+
+### Booking Page
+
+The booking page lets users choose ticket quantities before going to Stripe checkout. JavaScript updates the total price on the page, and the form checks that users cannot continue with zero tickets or more tickets than are available.
+
+### Payment Pages
+
+The payment success page confirms that the payment has been completed and shows the order summary. The payment cancelled page gives users a clear message if checkout is cancelled and lets them return to events.
+
+### Booking Confirmation Page
+
+The booking confirmation page shows the confirmed order details, including the event, order number, ticket quantity, total price and ticket status. It also tells users that tickets will be emailed before the event start date.
+
+### My Tickets Page
+
+The My Tickets page shows the user's paid bookings. It also shows cancellation or refund information if an order has a request linked to it.
+
+### Support Pages
+
+The support pages let logged-in users create, edit and delete support tickets. Users can also request cancellation for an order, which is then managed separately by the site owner in admin.
+
+### Admin Area
+
+The admin area is used by the site owner to manage the website content and booking data. Categories, venues, events, ticket types, orders, refunds, support tickets and cancellation requests are all managed through Django admin.
+
+### Error Pages
+
+Custom 404 and 500 pages are included so users get a styled page if something goes wrong or a page cannot be found.
 
 ## Testing
 
