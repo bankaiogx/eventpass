@@ -109,11 +109,62 @@ The UX/UI for EventPass was designed around making local event browsing and book
 
 The main user journey was kept simple. Visitors can browse and filter events first, then register or log in only when they want to book tickets. This avoids forcing users to create an account before they know whether they are interested in an event.
 
-### Visual Style
+The site is not designed as an organiser marketplace. This affected the interface because public users do not need organiser dashboards, create-event forms or edit-event pages. Instead, the public side focuses on browsing events, booking tickets, managing account details and getting help with an order. Event and ticket management is kept in Django admin for the site owner.
 
-The visual style is based around a ticket and live-event theme. The dark navy header gives the site a professional base, while the coral accent colour is used for key actions such as Register, Browse Events, Book Tickets and payment buttons. Purple is used more lightly for category badges and small highlights, which fits the live-event/stage lighting style without making the whole page too busy.
+The pages were also planned so users can scan information quickly. Event cards show the image, category, date, city, price and availability before the user opens the detail page. This is important for an event website because users usually compare a few options before deciding what to book.
 
-The event cards are image-led because users usually want a quick visual idea of an event before reading the full details. Cards show the event category, title, time, city, ticket availability and price so users can scan the page quickly.
+I also tried to reduce cognitive overload by keeping each page focused on one main task. For example, the events page is for browsing and filtering, the event detail page is for checking event information, and the booking page is for choosing ticket quantities. I also followed Fitts's Law by making the main buttons large and easy to click or tap, especially actions like Browse Events, Book Tickets, Continue to Payment and View My Tickets.
+
+### Project Planning
+
+The project was planned around a simpler site-owner event model. At first, the idea could have become an organiser marketplace where different organisers create and manage events, but this would have added a lot of extra permissions and dashboard work.
+
+The final plan was to make the site owner manage events through Django admin, while public users browse and buy tickets through the public website. This made the project easier to control and allowed more time to focus on the booking journey, payment flow, responsive design and testing.
+
+The main user journey planned was:
+
+1. Site owner adds events and ticket types in Django admin.
+2. Visitor browses published events.
+3. Visitor searches or filters events.
+4. Visitor registers or logs in when they want to book.
+5. User selects ticket quantities.
+6. User pays through Stripe test checkout.
+7. Booking appears in My Tickets.
+8. User can request support or cancellation if needed.
+
+### Wireframes
+
+Simple wireframes were used to plan the main page structure before building the final styling. These were kept basic so the focus stayed on layout, navigation and user flow rather than colours or images at the start.
+
+The main pages planned were:
+
+- homepage with carousel, featured events and category links
+- events page with search and filters
+- event detail page with venue and ticket information
+- register and login pages
+- booking page with ticket quantities
+- My Tickets page
+- support ticket pages
+
+These layouts helped decide where the main buttons should go, especially on the event detail and booking pages where the user needs a clear path from viewing an event to completing checkout.
+
+### Design Tokens
+
+Design tokens were used to keep the styling consistent across the website. Instead of choosing colours and spacing separately on each page, I placed the main style values in the CSS file and reused them throughout the project.
+
+The main tokens included:
+
+- dark navy background colour
+- coral action colour
+- purple highlight colour
+- off-white page background
+- muted text colour
+- border colour
+- card border radius
+- reusable button styling
+- reusable form styling
+
+This helped keep the design consistent because the same colours, buttons, cards and panels are reused across the homepage, events page, booking page, profile page, support pages and payment pages.
 
 ### Colour Palette
 
@@ -121,7 +172,19 @@ The colour palette was planned before styling the site so the design could stay 
 
 <img src="assets/readme/design/eventpass-colour-palette.png" alt="EventPass colour palette" width="650">
 
-### Layout and Navigation
+The visual style is based around a ticket and live-event theme. The dark navy header gives the site a professional base, while the coral accent colour is used for key actions such as Register, Browse Events, Book Tickets and payment buttons. Purple is used more lightly for category badges and small highlights, which fits the live-event/stage lighting style without making the whole page too busy.
+
+### Visual Hierarchy
+
+Visual hierarchy was important because the website includes browsing, filtering, booking, payments and support features. To keep this clear, I used large headings, card sections, spacing and strong button colours.
+
+The homepage carousel uses large text and a clear button so users immediately understand the main purpose of the site. Event cards are image-led so users can first recognise the type of event, then read the title, date, city, price and availability.
+
+The booking page was also kept focused. Ticket types are shown in a list, quantity controls sit beside each ticket, and the total updates underneath. The main checkout button uses the coral colour, while secondary actions use dark buttons so the main action is easier to spot.
+
+Payment and confirmation pages use centred cards because these pages need to give clear feedback. The user should quickly understand whether the payment worked, what order was created and where to view their tickets.
+
+### Navigation
 
 The layout uses a simple structure with a clear header, main content area and footer. The navbar stays consistent across the site and changes depending on whether the user is logged in or logged out. Logged-out users see Login and Register, while logged-in users see Profile, Support and Logout.
 
