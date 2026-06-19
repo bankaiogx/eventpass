@@ -1,3 +1,5 @@
+<img src="documentation/readme/readmebanner.png" alt="EventPass banner" width="100%">
+
 # EventPass
 
 **Live Site:** https://eventpass-project-arbaz-26c642d141a9.herokuapp.com/
@@ -52,7 +54,7 @@ The purpose of EventPass is to give users one clear place to find and book local
 
 The site is designed to make the booking process easy to follow. Users can browse events without needing an account, view the main details before booking, select ticket quantities, pay through Stripe test checkout and then return to their account to see their tickets. This keeps the process straightforward and avoids making users register before they know whether they are interested in an event.
 
-From a development point of view, the project was built to demonstrate a full-stack Django application with user authentication, relational database models, CRUD features through Django admin, form validation, JavaScript interaction, Stripe payments, media storage, responsive design, accessibility considerations, deployment and testing.
+For the coursework, the project shows a full-stack Django build with user authentication, database relationships, CRUD features through Django admin, form validation, JavaScript interaction, Stripe payments, media storage, responsive design, accessibility checks, deployment and testing.
 
 ## Target Audience
 
@@ -105,15 +107,15 @@ The main target audience includes:
 
 ## UX / UI Rationale
 
-The UX/UI for EventPass was designed around making local event browsing and booking feel clear, modern and easy to follow. The aim was to avoid making the website feel like a basic Django project, so the design uses strong event imagery, a clean navbar, clear event cards, visible buttons and simple forms.
+The UX/UI for EventPass was designed around making local event browsing and booking feel modern but still easy to follow. I wanted it to feel more like a real ticket booking site than a plain Django project, so the design uses event imagery, a clean navbar, event cards, visible buttons and simple forms.
 
 The main user journey was kept simple. Visitors can browse and filter events first, then register or log in only when they want to book tickets. This avoids forcing users to create an account before they know whether they are interested in an event.
 
 The site is not designed as an organiser marketplace. This affected the interface because public users do not need organiser dashboards, create-event forms or edit-event pages. Instead, the public side focuses on browsing events, booking tickets, managing account details and getting help with an order. Event and ticket management is kept in Django admin for the site owner.
 
-The pages were also planned so users can scan information quickly. Event cards show the image, category, date, city, price and availability before the user opens the detail page. This is important for an event website because users usually compare a few options before deciding what to book.
+The pages were also planned so users can scan information quickly. Event cards show the image, category, date, city, price and availability before the user opens the detail page, because users will usually compare a few events before deciding what to book.
 
-I also tried to reduce cognitive overload by keeping each page focused on one main task. For example, the events page is for browsing and filtering, the event detail page is for checking event information, and the booking page is for choosing ticket quantities. I also followed Fitts's Law by making the main buttons large and easy to click or tap, especially actions like Browse Events, Book Tickets, Continue to Payment and View My Tickets.
+I also tried to reduce cognitive overload by keeping each page focused on one main task. For example, the events page is for browsing and filtering, the event detail page is for checking event information, and the booking page is for choosing ticket quantities. I used Fitts's Law as a guide as well, so the main buttons are large and easy to click or tap, especially actions like Browse Events, Book Tickets, Continue to Payment and View My Tickets.
 
 ### Project Planning
 
@@ -186,7 +188,7 @@ The main tokens included:
 - reusable button styling
 - reusable form styling
 
-This helped keep the design consistent because the same colours, buttons, cards and panels are reused across the homepage, events page, booking page, profile page, support pages and payment pages.
+This kept the design consistent because the same colours, buttons, cards and panels are reused across the homepage, events page, booking page, profile page, support pages and payment pages.
 
 ### Colour Palette
 
@@ -198,33 +200,33 @@ The visual style is based around a ticket and live-event theme. The dark navy he
 
 ### Visual Hierarchy
 
-Visual hierarchy was important because the website includes browsing, filtering, booking, payments and support features. To keep this clear, I used large headings, card sections, spacing and strong button colours.
+Visual hierarchy mattered because the website includes browsing, filtering, booking, payments and support features. I used large headings, card sections, spacing and strong button colours so users could tell what to do next.
 
-The homepage carousel uses large text and a clear button so users immediately understand the main purpose of the site. Event cards are image-led so users can first recognise the type of event, then read the title, date, city, price and availability.
+The homepage carousel uses large text and a main button so users can quickly understand the purpose of the site. Event cards are image-led so users can first recognise the type of event, then read the title, date, city, price and availability.
 
 The booking page was also kept focused. Ticket types are shown in a list, quantity controls sit beside each ticket, and the total updates underneath. The main checkout button uses the coral colour, while secondary actions use dark buttons so the main action is easier to spot.
 
-Payment and confirmation pages use centred cards because these pages need to give clear feedback. The user should quickly understand whether the payment worked, what order was created and where to view their tickets.
+Payment and confirmation pages use centred cards because these pages need to give quick feedback. The user should be able to see whether the payment worked, what order was created and where to view their tickets.
 
 ### Navigation
 
-The layout uses a simple structure with a clear header, main content area and footer. The navbar stays consistent across the site and changes depending on whether the user is logged in or logged out. Logged-out users see Login and Register, while logged-in users see Profile, Support and Logout.
+The layout uses a simple structure with a header, main content area and footer. The navbar stays consistent across the site and changes depending on whether the user is logged in or logged out. Logged-out users see Login and Register, while logged-in users see Profile, Support and Logout.
 
 On smaller screens, the navbar collapses into a Bootstrap hamburger menu. This keeps the header clean on mobile and avoids crowding the navigation links.
 
 ### Forms and Booking Flow
 
-Forms were kept simple with clear labels, full-width inputs and large buttons. This was important for registration, login, profile updates, support tickets and booking. The booking page also uses JavaScript to update the ticket total and prevent users from continuing with invalid quantities.
+Forms were kept simple with clear labels, full-width inputs and large buttons. This was useful for registration, login, profile updates, support tickets and booking. The booking page also uses JavaScript to update the ticket total and prevent users from continuing with invalid quantities.
 
-The payment flow was designed to give clear feedback. Users are sent to Stripe test checkout, then returned to either a payment success page or a payment cancelled page. This gives the user a clear result instead of leaving them unsure about what happened.
+The payment flow was designed so users know what happened after checkout. Users are sent to Stripe test checkout, then returned to either a payment success page or a payment cancelled page.
 
 ### Responsive Design
 
-The site was built to work on desktop and mobile. Event cards stack on smaller screens, forms stay full width, and buttons remain large enough to tap. This is important because users may browse or book local events from their phone.
+The site was built to work on desktop and mobile. Event cards stack on smaller screens, forms stay full width, and buttons remain large enough to tap, because users may browse or book local events from their phone.
 
 ### Accessibility Considerations
 
-Accessibility was considered by using readable colours, clear labels, alt text for important images, aria labels for icon links, visible button text and responsive layouts. The carousel images are used as decorative background images, while the important meaning is provided through visible headings, text and buttons.
+Accessibility was covered through readable colours, clear labels, alt text for important images, aria labels for icon links, visible button text and responsive layouts. The carousel images are used as decorative background images, while the meaning is provided through visible headings, text and buttons.
 
 ## Database Design
 
@@ -481,7 +483,7 @@ Custom 404 and 500 pages are included so users get a styled page if something go
 
 ## Accessibility Features
 
-Accessibility was considered throughout the project so the site is easier to use and understand. I kept the accessibility work simple and relevant rather than adding unnecessary ARIA everywhere.
+Accessibility was included throughout the project so the site is easier to use and understand. I kept this practical rather than adding unnecessary ARIA everywhere.
 
 - **Semantic HTML structure**  
 Pages use normal headings, links, buttons, forms and sections where possible, so the structure is easier to follow.
@@ -515,7 +517,7 @@ The layout adapts for smaller screens, and the navbar becomes a hamburger menu o
 
 ## Responsive Design
 
-The website was built to work across desktop, tablet and mobile screen sizes. This was important because users may browse events or book tickets while using their phone.
+The website was built to work across desktop, tablet and mobile screen sizes because users may browse events or book tickets while using their phone.
 
 Bootstrap was used for some of the layout and responsive behaviour, especially the navbar. On smaller screens, the desktop navigation changes into a hamburger menu so the links do not overcrowd the top of the page.
 
@@ -525,7 +527,7 @@ Forms were also considered for smaller screens. Inputs, buttons and ticket quant
 
 The booking and payment pages use centred cards on larger screens, but still fit smaller mobile screens without horizontal scrolling. This keeps the checkout journey simple and readable.
 
-Custom CSS media queries were used alongside Bootstrap to adjust spacing, image sizing, navbar layout, carousel height and card behaviour. This helped keep the site consistent without needing to create separate pages for mobile and desktop.
+Custom CSS media queries were used alongside Bootstrap to adjust spacing, image sizing, navbar layout, carousel height and card behaviour. This kept the site consistent without needing separate pages for mobile and desktop.
 
 ## Technologies Used
 
@@ -550,15 +552,15 @@ Custom CSS media queries were used alongside Bootstrap to adjust spacing, image 
 
 ### Testing Approach
 
-Testing was mainly carried out manually by using the website in the browser and checking each feature as it was added. This suited the project because a lot of the functionality depends on user interaction, forms, authentication, search filters, ticket quantities, Stripe checkout, support requests and admin updates.
+Testing was mainly carried out manually in the browser as each feature was added. This suited the project because a lot of the functionality depends on user interaction, forms, authentication, search filters, ticket quantities, Stripe checkout, support requests and admin updates.
 
-Manual testing allowed me to check the project from a user's point of view. For example, I could test whether a user could register, log in, browse events, choose tickets, complete checkout, view their tickets and request support for an order.
+Manual testing helped me check the project from a user's point of view. For example, I tested whether a user could register, log in, browse events, choose tickets, complete checkout, view their tickets and request support for an order.
 
-I also checked the website across different screen sizes and browsers. The main testing was done in Chrome, with additional checks in Safari because this is the browser I commonly use on my Mac. Mobile responsiveness was tested by resizing the browser window and using browser developer tools to check smaller screen widths. This helped me spot issues with the navbar, event cards, booking form and payment pages on mobile.
+I also checked the website across different screen sizes and browsers. Most of the testing was done in Chrome, with extra checks in Safari because that is the browser I normally use on my Mac. Mobile responsiveness was tested by resizing the browser window and using browser developer tools to check smaller screen widths. This helped catch issues with the navbar, event cards, booking form and payment pages on mobile.
 
 I also tested the project during deployment because the local version and Heroku version use different environments. Locally the project uses SQLite, while the deployed version uses Heroku Postgres and S3 media storage. This meant I had to check migrations, environment variables, static files, uploaded images and Stripe settings separately on Heroku.
 
-Alongside manual testing, I also checked that the Django project loaded correctly and that the static files and media files worked properly before and after deployment.
+Alongside manual testing, I checked that the Django project loaded correctly and that static files and media files worked properly before and after deployment.
 
 ### Manual Testing
 
@@ -787,15 +789,15 @@ The deployed homepage was checked with the W3C CSS Validator and no errors were 
 
 ## Version Control
 
-Version control was used throughout the development of this project to manage changes, track progress and keep the project organised. Git and GitHub were used together, with VS Code as the main development environment.
+Version control was used throughout the project to manage changes and keep track of progress. Git and GitHub were used together, with VS Code as the main development environment.
 
-I followed a simple workflow by working on a feature or fixing a bug, testing it, and then committing the change with a clear message. This made it easier to keep track of what had been added and also helped when debugging, because I could look back at previous commits to understand when a change was made.
+I followed a simple workflow by working on a feature or bug fix, testing it, and then committing the change with a clear message. This made it easier to keep track of what had been added and also helped when debugging, because I could look back at earlier commits.
 
-Commits were made regularly throughout the project and were usually based around individual features or fixes. For example, commits were used for adding the event models, customising admin, building event pages, adding authentication, adding the booking flow, connecting Stripe, fixing ticket stock, adding S3 media storage and updating the README.
+Commits were made throughout the project and were usually based around individual features or fixes. For example, commits were used for adding the event models, customising admin, building event pages, adding authentication, adding the booking flow, connecting Stripe, fixing ticket stock, adding S3 media storage and updating the README.
 
 GitHub was also important for deployment because the Heroku app was connected to the GitHub repository. This meant the deployed project could be updated from the main branch after changes were pushed.
 
-Overall, version control helped keep the development process more organised and made it easier to build the project in stages rather than trying to add everything at once.
+Version control helped keep the work organised and made it easier to build the project in stages instead of trying to add everything at once.
 
 ## Deployment
 
